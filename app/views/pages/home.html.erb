@@ -1,2 +1,58 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="full bg-white">
+  <div class="banner">
+    <div class="container ">
+      <div class="d-flex justify-content-around" >
+        <div class="back">
+          <h1 class= "title is-size-1 pt-6">Sumate a <strong class="has-text-link">TradeIt.</strong></h1>
+          <br>
+            <div class="tile is-child box  p-4 features">
+              <div class="level-left">
+                <span><%= image_tag "money-bag.png", alt: "Earnings", width: 40 %> </span>
+                <h4 class="ml-3 subtitle">Copiá a tus traders favoritos</h4>
+              </div>
+              <br><br>
+              <div class="level-left">
+              <span><%= image_tag "clock.png", alt: "Earnings", width: 30 %> </span>
+               <h4 class="ml-3 subtitle">Ahorrá tiempo automatizando tus inversiones </h4>
+              </div>
+              <br><br>
+              <div class="level-left">
+              <span><%= image_tag "social-media.png", alt: "Earnings", width: 30 %> </span>
+              <h4 class="ml-3 subtitle">Aprendé en comunidad</h4>
+              </div>
+          </div>
+        </div>
+        <%= image_tag "astronaut.png", alt: "Astronaut", width: 500, class:"d-flex justify-content-end", class:"pt-3" %>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <section class="hero is-small  m-6 contenedor">
+  <div class="hero-body">
+    <p class="title text-center contitle has-text-white">
+      Elegí tu riesgo y explorá traders
+    </p>
+    <div class="card-columns level ">
+      <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+        <div class="title is-4 header text-center">
+          <h4> <%= link_to "Riesgo Bajo", "#", class: "tag is-link is-light is-large" %></h4>
+        </div>
+        <%= image_tag "low-risk.png", alt: "Low-risk", width: 350 %>
+      </div>
+       <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+        <div class="title is-4 header text-center">
+          <h4> <%= link_to "Riesgo Medio", "#", class: "tag is-link is-light is-large" %></h4>
+        </div>
+        <%= image_tag "medium-risk.png", alt: "Med-risk", width: 350, :class =>"d-flex align-content-end" %>
+      </div>
+       <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+          <div class="title is-4 header text-center">
+            <h4> <%= link_to "Riesgo Bajo", "#", class: "tag is-link is-light is-large" %></h4>
+          </div>
+        <%= image_tag "high-risk.png", alt: "High-risk", width: 350 %>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
