@@ -4,6 +4,7 @@ class CreateBios < ActiveRecord::Migration[6.1]
       t.string :username
       t.text :description
       t.float :rendimiento
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

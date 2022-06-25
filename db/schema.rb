@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_25_162536) do
+ActiveRecord::Schema.define(version: 2022_06_25_183448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,56 @@ ActiveRecord::Schema.define(version: 2022_06_25_162536) do
     t.string "username"
     t.text "description"
     t.float "rendimiento"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bios_on_user_id"
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.string "name"
+    t.string "public_key"
+    t.string "private_key"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_exchanges_on_user_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.bigint "trade_id", null: false
+    t.bigint "subscription_id", null: false
+    t.float "open_price"
+    t.float "close_price"
+    t.string "external_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_id"], name: "index_positions_on_subscription_id"
+    t.index ["trade_id"], name: "index_positions_on_trade_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "amount_per_trade"
+    t.integer "max_amount"
+    t.bigint "trader_id", null: false
+    t.bigint "subscriber_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
+    t.index ["trader_id"], name: "index_subscriptions_on_trader_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.string "symbol"
+    t.float "entry_price"
+    t.float "exit_price"
+    t.float "take_proffit"
+    t.float "stop_loss"
+    t.string "side"
+    t.bigint "trader_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trader_id"], name: "index_trades_on_trader_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,4 +113,11 @@ ActiveRecord::Schema.define(version: 2022_06_25_162536) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bios", "users"
+  add_foreign_key "exchanges", "users"
+  add_foreign_key "positions", "subscriptions"
+  add_foreign_key "positions", "trades"
+  add_foreign_key "subscriptions", "users", column: "subscriber_id"
+  add_foreign_key "subscriptions", "users", column: "trader_id"
+  add_foreign_key "trades", "users", column: "trader_id"
 end
