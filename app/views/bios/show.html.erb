@@ -9,7 +9,7 @@
               <img class="mx-auto h-20 w-20 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
             </div>
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-              <p class="text-xl font-bold text-gray-900 sm:text-2xl">Luca Pagano</p>
+              <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= @bio.username %></p>
 
             </div>
           </div>
@@ -22,7 +22,7 @@
       <div class="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
         <div class="px-6 py-5 text-sm font-medium text-center">
           <span class="text-gray-900">Rendimiento:</span>
-          <span class="text-gray-600">15%</span>
+          <span class="text-gray-600"><%= @bio.rendimiento %>%</span>
         </div>
 
         <div class="px-6 py-5 text-sm font-medium text-center">
@@ -32,11 +32,11 @@
 
         <div class="px-6 py-5 text-sm font-medium text-center">
           <span class="text-gray-900">Trades:</span>
-          <span class="text-gray-600">50</span>
+          <span class="text-gray-600"><%= @bio.user.trades.count %></span>
         </div>
       </div>
     </div>
-   
+
 
     <div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +53,7 @@
           <div class="top-card">
             <div class="flex space-x-3">
                 <img class="image is-64x64 rounded-full p-0" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <img class="image is-24x24 rounded-full" src="https://bitcoin.org/img/icons/opengraph.png?1652976465" alt="">   
+                <img class="image is-24x24 rounded-full" src="https://bitcoin.org/img/icons/opengraph.png?1652976465" alt="">
                 <div class="flex-1 space-y-1 level">
                     <p class="level-left pl-5 is-size-5">Luca Pagano</p>
                     <p class="tag is-success is-medium space-x-reverse">LONG</p>
@@ -87,5 +87,5 @@
         <!-- More items... -->
       </ul>
     </div>
-  </div> 
-</div>  
+  </div>
+</div>
