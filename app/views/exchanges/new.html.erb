@@ -1,0 +1,9 @@
+<% # simple_form_for @exchange, remote: true do |f| %>
+<%= simple_form_for @exchange do |f| %>
+  <%= f.input :name %>
+  <%= f.input :public_key %>
+  <%= f.input :private_key %>
+  <div class="d-flex justify-content-center">
+    <%= f.submit "Save Exchange", class: 'btn btn-primary' %>
+  </div>
+<% end %>
