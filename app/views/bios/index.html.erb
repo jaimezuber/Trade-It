@@ -1,1 +1,38 @@
-<h1>Index de traders</h1>
+<section class="main-content">
+		<div class="container">
+			<br>
+			<br>
+        <div class="row">
+          <% @bios.each do |bio| %>
+            <div class="col-sm-6 col-md-6 col-lg-4">
+              <div class="card bg-white p-3 mb-4 shadow">
+                <div class="d-flex justify-content-between mb-4">
+                  <div class="user-info">
+                    <div class="user-info__img">
+                      <%= cl_image_tag bio.photo.key, height: 90, width: 130, crop: :fill %>
+                    </div>
+                    <div class="user-info__basic">
+                      <h5 class="mb-0"><%= bio.username %></h5>
+                    </div>
+                  </div>
+                  <div>
+                    </a>
+                    <div>
+                      <%= link_to "More" %>
+                    </div>
+                  </div>
+                </div>
+                <h6 class="mb-0">Trades</h6>
+                <div class="d-flex justify-content-between mt-4">
+                  <div>
+                    <h5 class="mb-0">250</h5>
+                  </div>
+                  <span class="text-success font-weight-bold">+50% since last month</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+		</div>
+  </div>
+</section>
