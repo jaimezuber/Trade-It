@@ -7,7 +7,7 @@
           <div class="sm:flex sm:items-center sm:justify-between">
             <div class="sm:flex sm:space-x-5">
               <div class="flex-shrink-0">
-                <img class="mx-auto h-20 w-20 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                <%= cl_image_tag(@bio.photo.key,  height: 128, width: 128, crop: :fill, :radius => 100) %>
               </div>
               <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
                 <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= @bio.username %></p>
@@ -41,7 +41,7 @@
 
       <div>
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto" style="width: 65%;">
+            <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto " style="width: 65%;">
         <ul role="list" class="divide-y divide-gray-200">
       <div class=" px-4 py-5 border-b border-gray-200 sm:px-6">
         <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
@@ -52,10 +52,10 @@
       </div>
       <div class="row">
           <% @bio.user.trades.each do |trade|%>
-          <li class="p-5 border-t" style="list-style: none;">
+          <li class="p-5 border-t bg-white" style="list-style: none;">
             <div class="top-card">
               <div class="flex space-x-3">
-                  <img class="image is-64x64 rounded-full p-0" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                  <%= cl_image_tag(@bio.photo.key,  height: 64, width: 64, crop: :fill, :radius => 100) %>
                   <div class="flex-1 space-y-1 level">
                       <p class="level-left pl-5 is-size-5">Luca Pagano</p>
                       <p class="tag is-success is-medium space-x-reverse">LONG</p>
