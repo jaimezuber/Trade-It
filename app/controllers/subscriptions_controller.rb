@@ -1,17 +1,18 @@
 class SubscriptionsController < ApplicationController
   def new
+    @trader = User.find(params[:user_id])
     @subscription = Subscription.new
-    # Creo que voy a necesitar esto si hago un resources anidado @trader = User.find(params[:id])
+    @subscription.trader = @trader
   end
 
   def create
     @subscription = Subscription.create(rev_params)
-    @trader = params # Ver como como pasarle el trader en los params
+    @trader = User.find(params[:user_id]) # Ver como como pasarle el trader en los params
     @subscription.subscriber = current_user
     @subscription.trader = @trader
     if @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
-      redirect_to bio_path(@trader)
+      redirect_to bio_path(@trader.bio)
     else
       render :new
     end

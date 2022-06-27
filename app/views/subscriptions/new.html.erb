@@ -1,1 +1,7 @@
-<h1>Aca va el forms para crear la subscripcion</h1>
+<%= simple_form_for [@trader, @subscription] do |f| %>
+  <%= f.input :amount_per_trade, input_html: { type: 'number' } %>
+  <%= f.input :max_amount, input_html: { type: 'number' } %>
+  <div class="d-flex justify-content-center">
+    <%= f.submit "Subscribe", class: 'btn btn-primary' %>
+  </div>
+<% end %>
