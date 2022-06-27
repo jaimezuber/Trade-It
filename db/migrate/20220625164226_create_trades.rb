@@ -4,7 +4,7 @@ class CreateTrades < ActiveRecord::Migration[6.1]
       t.string :symbol
       t.float :entry_price
       t.float :exit_price
-      t.float :take_proffit
+      t.float :take_profit
       t.float :stop_loss
       t.string :side
       t.references :trader, null: false, foreign_key: { to_table: 'users' }
