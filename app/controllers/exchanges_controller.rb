@@ -17,6 +17,6 @@ class ExchangesController < ApplicationController
   private
 
   def rev_params
-    params.require(:exchange).permit(:name, :public_key, :private_key)
+    params.require(:exchange).permit(:name, :write_key, :read_key)
   end
 end

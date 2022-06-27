@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2022_06_25_183448) do
 
   create_table "exchanges", force: :cascade do |t|
     t.string "name"
-    t.string "public_key"
-    t.string "private_key"
+    t.string "read_key"
+    t.string "write_key"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
