@@ -22,17 +22,17 @@
         </div>
         <div class="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
           <div class="px-6 py-5 text-sm font-medium text-center">
-            <span class="text-gray-900">Rendimiento:</span>
+            <span class="text-gray-900"><strong>Rendimiento:</strong></span>
             <span class="text-gray-600"><%= @bio.rendimiento %>%</span>
           </div>
 
           <div class="px-6 py-5 text-sm font-medium text-center">
-            <span class="text-gray-900">Volatilidad</span>
+            <span class="text-gray-900"><strong>Volatilidad</strong></span>
             <span class="text-gray-600">30%</span>
           </div>
 
           <div class="px-6 py-5 text-sm font-medium text-center">
-            <span class="text-gray-900">Trades:</span>
+            <span class="text-gray-900"><strong>Trades:</strong></span>
             <span class="text-gray-600"><%= @bio.user.trades.count %></span>
           </div>
         </div>
@@ -51,6 +51,7 @@
         </div>
       </div>
       <div class="row">
+        
           <% @bio.user.trades.each do |trade|%>
           <li class="p-5 border-t bg-white" style="list-style: none;">
             <div class="top-card">
@@ -61,40 +62,53 @@
                       <p class="tag is-success is-medium space-x-reverse">LONG</p>
                   </div>
               </div>
+              
                 <div class="level">
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Coin:</span>
-                    <span class="text-gray-600"><%= trade.symbol %></span>
+                    <span class="text-gray-600 pl-2"><%= trade.symbol %></span>
                   </div>
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Entry:</span>
-                    <span class="text-gray-600"><%= trade.entry_price %></span>
+                    <span class="text-gray-600 pl-2"><%= trade.entry_price %></span>
                   </div>
 
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Exit:</span>
-                    <span class="text-gray-600"><%= trade.exit_price %></span>
+                    <span class="text-gray-600 pl-2">
+                      <% if trade.exit_price.nil? %>
+                        <% @result.each do |ticker| %>
+                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                            <%= ticker['last_price'].to_i.round() %>
+                          <% end %>
+                        <% end %>
+                      <% else %>
+                        <%= trade.exit_price %>
+                      <% end %></span>
                   </div>
-
                   <div class="px-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">PnL:</span>
-                    <p class="text-gray-600"><%=%></span>
-                     <!--  pnl cuando tenga exit price #(trade.exit_price / trade.entry_price) -1 -->
+                    <p class="text-gray-600 pl-2">
+                      <% if trade.exit_price.nil? %>
+                        <% @result.each do |ticker| %>
+                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                            <%= (((ticker['last_price'] / trade.entry_price) -1)*100).round() %>%
+                          <% end %>
+                        <% end %>
+                        <% else %>
+                          <%= (((trade.exit_price / trade.entry_price) -1)*100).round() %>%
+                      <% end %>
+                    </span>
                   </div>
                 </div>
               </div>
               <%end%>
             </div>
-
           </li>
         </div>
-
-
-          </div>
-          </div>
-
-          <!-- More items... -->
-        </ul>
+      </div>
+    </div>
+    </ul>
       </div>
     </div>
   </div>

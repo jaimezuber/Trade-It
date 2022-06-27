@@ -7,5 +7,16 @@ class BiosController < ApplicationController
 
   def show
     @bio = Bio.find(params[:id])
+
+    require 'json'
+    require 'rest-client'
+    url = 'https://api.exchange.ripio.com/api/v1/rate/all/'
+
+    response = RestClient.get url
+    @result = JSON.parse response.to_str
+
+
+
+    
   end
 end
