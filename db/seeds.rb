@@ -55,10 +55,10 @@ subsc_jaime = Subscription.new(trader: luca, subscriber: jaime, amount_per_trade
 
 puts 'Adding trades to luca'
 
-trade1 = Trade.create(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, take_proffit: 22_000, stop_loss: 19_000)
-trade2 = Trade.create(trader: luca, symbol: 'btc', side: 'buy', entry_price: 21_500, take_proffit: 22_300, stop_loss: 19_200)
-trade3 = Trade.create(trader: luca, symbol: 'eth', side: 'sell', entry_price: 1100, take_proffit: 950, stop_loss: 1150)
-trade4 = Trade.create(trader: luca, symbol: 'sol', side: 'buy', entry_price: 38, take_proffit: 45, stop_loss: 36.5)
+trade1 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, take_profit: 22_000, stop_loss: 19_000)
+trade2 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 21_500, take_profit: 22_300, stop_loss: 19_200)
+trade3 = Trade.create!(trader: luca, symbol: 'eth', side: 'sell', entry_price: 1100, take_profit: 950, stop_loss: 1150)
+trade4 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 38, take_profit: 45, stop_loss: 36.5)
 
 puts 'Implementing positions'
 

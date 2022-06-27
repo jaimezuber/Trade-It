@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_183448) do
     t.string "symbol"
     t.float "entry_price"
     t.float "exit_price"
-    t.float "take_proffit"
+    t.float "take_profit"
     t.float "stop_loss"
     t.string "side"
     t.bigint "trader_id", null: false
