@@ -61,6 +61,7 @@
                       <p class="tag is-success is-medium space-x-reverse">LONG</p>
                   </div>
               </div>
+              
                 <div class="level">
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Coin:</span>
@@ -73,13 +74,27 @@
 
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Exit:</span>
-                    <span class="text-gray-600"><%= trade.exit_price %></span>
+                    <span class="text-gray-600">
+                      <% if trade.exit_price.nil? %>
+                        <% @result.each do |ticker| %>
+                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                            <%= ticker['last_price'].to_i.round() %>
+                          <% end %>
+                        <% end %>
+                        <% elsif !trade.exit_price.nil?%>
+                          <%= trade.exit_price %>
+                        <% else %>
+                          <%= 50 %>
+                      <% end %></span>
                   </div>
-
+<% exitPrice = if trade.exit_price.nil? %>
+  <%= 50 %>
+<% else %>
+  <%= trade.exit_price.to_i %>
+<% end %>
                   <div class="px-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">PnL:</span>
-                    <p class="text-gray-600"><%=%></span>
-                     <!--  pnl cuando tenga exit price #(trade.exit_price / trade.entry_price) -1 -->
+                    <p class="text-gray-600"><%= ( exitPrice.to_i / trade.entry_price.to_i ) -1 %></span>
                   </div>
                 </div>
               </div>
