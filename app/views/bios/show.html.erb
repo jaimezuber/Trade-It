@@ -51,7 +51,9 @@
         </div>
       </div>
       <div class="row">
+        
           <% @bio.user.trades.each do |trade|%>
+            <% unless trade.symbol == 'sol' %> <!-- PARCHE POR EL SEED!... -->
           <li class="p-5 border-t bg-white" style="list-style: none;">
             <div class="top-card">
               <div class="flex space-x-3">
@@ -65,40 +67,44 @@
                 <div class="level">
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Coin:</span>
-                    <span class="text-gray-600"><%= trade.symbol %></span>
+                    <span class="text-gray-600 pl-2"><%= trade.symbol %></span>
                   </div>
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Entry:</span>
-                    <span class="text-gray-600"><%= trade.entry_price %></span>
+                    <span class="text-gray-600 pl-2"><%= trade.entry_price %></span>
                   </div>
 
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Exit:</span>
-                    <span class="text-gray-600">
+                    <span class="text-gray-600 pl-2">
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
                           <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
                             <%= ticker['last_price'].to_i.round() %>
                           <% end %>
                         <% end %>
-                        <% elsif !trade.exit_price.nil?%>
-                          <%= trade.exit_price %>
-                        <% else %>
-                          <%= 50 %>
+                      <% else %>
+                        <%= trade.exit_price %>
                       <% end %></span>
                   </div>
-<% exitPrice = if trade.exit_price.nil? %>
-  <%= 50 %>
-<% else %>
-  <%= trade.exit_price.to_i %>
-<% end %>
                   <div class="px-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">PnL:</span>
-                    <p class="text-gray-600"><%= ( exitPrice.to_i / trade.entry_price.to_i ) -1 %></span>
+                    <p class="text-gray-600 pl-2">
+                      <% if trade.exit_price.nil? %>
+                        <% @result.each do |ticker| %>
+                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                            <%= (((ticker['last_price'].to_i.round() / trade.entry_price) -1)*100).round() %>%
+                          <% end %>
+                        <% end %>
+                        <% else %>
+                          <%= (((trade.exit_price.to_i.round() / trade.entry_price) -1)*100).round() %>%
+                      <% end %>
+                    </span>
                   </div>
                 </div>
               </div>
               <%end%>
+            <% end %>
             </div>
 
           </li>
@@ -108,7 +114,7 @@
           </div>
           </div>
 
-          <!-- More items... -->
+          
         </ul>
       </div>
     </div>
