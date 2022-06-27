@@ -92,7 +92,7 @@
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
                           <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
-                            <%= (((ticker['last_price'] / trade.entry_price) -1)*100).round() %>%
+                            <%= (((ticker['last_price'].to_i / trade.entry_price) -1)*100).round() %>%
                           <% end %>
                         <% end %>
                         <% else %>

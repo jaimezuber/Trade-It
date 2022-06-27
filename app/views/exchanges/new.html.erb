@@ -1,9 +1,25 @@
-<% # simple_form_for @exchange, remote: true do |f| %>
-<%= simple_form_for @exchange do |f| %>
-  <%= f.input :name %>
-  <%= f.input :read_key %>
-  <%= f.input :write_key %>
-  <div class="d-flex justify-content-center">
-    <%= f.submit "Save Exchange", class: 'btn btn-primary' %>
+<div style="background-color: #EEF1FA;">
+  <br><br><br>
+  <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto p-5 bg-white " style="width: 50%;">
+    <form>
+        <%= simple_form_for(@exchange) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <div class="form-group">
+        <div class="form-text">
+          <%= f.input :name, label: "Name your exchange account" %>
+        </div>
+        <div class="form-text">
+          <%= f.input :read_key, required: true %>
+        </div>  
+        <div class="form-text">
+          <%= f.input :write_key, required: true %>
+        </div>  
+        <div class="form-actions mx-auto d-flex justify-content-center">
+          <%= f.button :submit, class: "button is-link is-light" %>
+        </div>
+      </form>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
