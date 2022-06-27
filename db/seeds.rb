@@ -29,10 +29,10 @@ luca = User.create!(email: 'luca@gmail.com', password: 'luquita')
 puts 'Failed creating user' if jaime.id.nil?
 puts 'Adding bios'
 
-bio_joel = Bio.create!(username: 'Joel', description: 'Me llamo joel y no hago trading', user: joel)
-bio_maxi = Bio.create!(username: 'Maxi', description: 'Me llamo maxi y no hago trading', user: maxi)
-bio_jaime = Bio.create!(username: 'Jaime', description: 'Me llamo jaime y no hago trading', user: jaime)
-bio_luca = Bio.create!(username: 'Luca', description: 'Me llamo luca y hago trading', user: luca)
+bio_joel = Bio.create!(username: 'Joel Jaldin', description: 'Me llamo joel y no hago trading', user: joel)
+bio_maxi = Bio.create!(username: 'Maxi Zatta', description: 'Me llamo maxi y no hago trading', user: maxi)
+bio_jaime = Bio.create!(username: 'Jaime Zuber', description: 'Me llamo jaime y no hago trading', user: jaime)
+bio_luca = Bio.create!(username: 'Luca Pagano', description: 'Me llamo luca y hago trading', user: luca)
 
 bio_joel.photo.attach(io: foto_joel, filename: 'bio_joel.jpg', content_type: 'image/jpg')
 bio_luca.photo.attach(io: foto_luca, filename: 'bio_luca.jpg', content_type: 'image/jpg')
