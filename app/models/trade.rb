@@ -6,10 +6,13 @@ class Trade < ApplicationRecord
   validates :symbol, inclusion: { in: ['BTC', 'ETH', 'BCH', 'ZEC', 'RCN', 'MTB18', 'LTC', 'RPC', 'UBI'],
                                   message: `%{value} no es una criptomoneda listada` }
   validates :symbol, :entry_price, :take_profit, :stop_loss, :side, presence: true
+  validates :side, inclusion: { in: ['BUY', 'SELL'] }
+  # validates :entry_price, :take_profit, :stop_loss, type: Numeric
 
   private
 
   def upcase
     symbol.upcase!
+    side.upcase!
   end
 end
