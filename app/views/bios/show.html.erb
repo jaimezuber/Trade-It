@@ -53,7 +53,6 @@
       <div class="row">
         
           <% @bio.user.trades.each do |trade|%>
-            <% unless trade.symbol == 'sol' %> <!-- PARCHE POR EL SEED!... -->
           <li class="p-5 border-t bg-white" style="list-style: none;">
             <div class="top-card">
               <div class="flex space-x-3">
@@ -93,29 +92,23 @@
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
                           <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
-                            <%= (((ticker['last_price'].to_i.round() / trade.entry_price) -1)*100).round() %>%
+                            <%= (((ticker['last_price'] / trade.entry_price) -1)*100).round() %>%
                           <% end %>
                         <% end %>
                         <% else %>
-                          <%= (((trade.exit_price.to_i.round() / trade.entry_price) -1)*100).round() %>%
+                          <%= (((trade.exit_price / trade.entry_price) -1)*100).round() %>%
                       <% end %>
                     </span>
                   </div>
                 </div>
               </div>
               <%end%>
-            <% end %>
             </div>
-
           </li>
         </div>
-
-
-          </div>
-          </div>
-
-          
-        </ul>
+      </div>
+    </div>
+    </ul>
       </div>
     </div>
   </div>
