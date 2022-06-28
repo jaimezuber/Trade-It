@@ -14,7 +14,7 @@ class BiosController < ApplicationController
       flash[:notice] = 'Account set'
       redirect_to bios_path
     else
-      render :new
+      render
     end
   end
 
