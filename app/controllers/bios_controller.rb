@@ -14,9 +14,5 @@ class BiosController < ApplicationController
 
     response = RestClient.get url
     @result = JSON.parse response.to_str
-
-
-
-    
   end
 end

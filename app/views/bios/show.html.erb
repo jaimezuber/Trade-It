@@ -58,8 +58,21 @@
               <div class="flex space-x-3">
                   <%= cl_image_tag(@bio.photo.key,  height: 64, width: 64, crop: :fill, :radius => 100) %>
                   <div class="flex-1 space-y-1 level">
-                      <p class="level-left pl-5 is-size-5">Luca Pagano</p>
-                      <p class="tag is-success is-medium space-x-reverse">LONG</p>
+                    <p class="level-left pl-5 is-size-5">Luca Pagano</p>
+                    <p class="tag is-success is-medium space-x-reverse">LONG</p>
+                    <% if trade.exit_price.nil? %>
+                      <p class="tag is-light is-medium space-x-reverse">OPEN</p>
+                      <% else %>
+                      <% @result.each do |ticker| %>
+                        <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                          <% if trade.exit_price > trade.entry_price %>
+                            <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
+                          <% else %>
+                            <p class="tag is-danger is-medium space-x-reverse">LOSE</p>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
                   </div>
               </div>
               
@@ -74,28 +87,30 @@
                   </div>
 
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
-                    <span class="tag is-light is-link is-medium">Exit:</span>
-                    <span class="text-gray-600 pl-2">
+                    
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
                           <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
-                            <%= ticker['last_price'].to_i.round() %>
+                          <span class="tag is-light is-link is-medium">Market:</span>
+                           <span class="text-gray-600 pl-2"> <%= ticker['last_price'].to_i.round() %></span>
                           <% end %>
                         <% end %>
                       <% else %>
-                        <%= trade.exit_price %>
-                      <% end %></span>
+                      <span class="tag is-light is-link is-medium">Exit:</span>
+                        <span class="text-gray-600 pl-2"><%= trade.exit_price %></span>
+                      <% end %>
                   </div>
                   <div class="px-6 py-1 text-sm font-medium text-center level-item">
-                    <span class="tag is-light is-link is-medium">PnL:</span>
                     <p class="text-gray-600 pl-2">
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
                           <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                          <span class="tag is-light is-link is-medium">Rolling PnL:</span>
                             <%= (((ticker['last_price'].to_i / trade.entry_price) -1)*100).round() %>%
                           <% end %>
                         <% end %>
                         <% else %>
+                        <span class="tag is-light is-link is-medium">PnL:</span>
                           <%= (((trade.exit_price / trade.entry_price) -1)*100).round() %>%
                       <% end %>
                     </span>
