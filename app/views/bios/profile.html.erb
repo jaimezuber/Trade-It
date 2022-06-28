@@ -2,6 +2,10 @@
 <%= @bio.username %>
 <br>
 <h1>Aca abajo pondria las cosas del exhcange</h1>
-<%= @bio.user.exchange.name %>
+<% if @bio.user.exchange.nil? %>
+  <%= link_to "Add Exchange", new_exchange_path %>
+<% else %>
+  <%= @bio.user.exchange.name %>
+<% end %>
 <% # Agregarle ocultar @bio.user.exchange.read_key %>
 <% # Agregarle ocultar @bio.user.exchange.write_key %>
