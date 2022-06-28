@@ -21,6 +21,7 @@
           <% @bios.each do |bio| %>
             <div class="col-sm-6 col-md-6 col-lg-4">
               <div class="card bg-white p-3 mb-4 shadow is-clickable">
+                <%= link_to bio_path(bio) do %>
                 <div class="d-flex justify-content-between mb-4">
                   <div class="user-info">
                     <div class="user-info__img">
@@ -28,12 +29,6 @@
                     </div>
                     <div class="user-info__basic">
                       <h5 class="mb-0"><%= bio.username %></h5>
-                    </div>
-                  </div>
-                  <div>
-                    </a>
-                    <div>
-                      <%= link_to "More", bio_path(bio) %>
                     </div>
                   </div>
                 </div>
@@ -44,6 +39,7 @@
                   </div>
                   <span class="text-success font-weight-bold">+50% since last month</span>
                 </div>
+                <% end %>
               </div>
             </div>
           <% end %>

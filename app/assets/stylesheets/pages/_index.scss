@@ -1,2 +1,11 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.card {
+transition: all 0.1s ease;
+}
+    
+.card:hover {
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    transform: scale(1.05);
+}
