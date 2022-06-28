@@ -1,0 +1,12 @@
+<h1>Tu Portfolio</h1>
+<br>
+<h2>Posiciones</h2>
+<br>
+<% @positions.each do |position| %>
+  <p>Trader</p>
+  <%= position.trade.trader.bio.username %>
+  <p>Moneda</p>
+  <%= position.trade.symbol %>
+  <p>Side</p>
+  <%= position.trade.side %>
+<% end %>

@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
   resources :exchanges, only: %i[new create]
   resources :subscriptions, only: :index
+  resources :positions, only: :index
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
