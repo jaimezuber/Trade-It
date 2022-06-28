@@ -13,4 +13,8 @@ class BioPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def profile?
+    true
+  end
 end
