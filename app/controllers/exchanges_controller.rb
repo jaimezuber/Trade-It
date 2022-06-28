@@ -12,7 +12,7 @@ class ExchangesController < ApplicationController
     authorize @exchange
     if @exchange.save
       flash[:notice] = 'Exchange guardado'
-      redirect_to bios_path
+      redirect_to profile_path
     else
       render :new
     end

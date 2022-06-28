@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require "open-uri"
 
 Exchange.destroy_all
 Bio.destroy_all
@@ -39,12 +38,12 @@ bio_luca.photo.attach(io: foto_luca, filename: 'bio_luca.jpg', content_type: 'im
 bio_maxi.photo.attach(io: foto_maxi, filename: 'bio_maxi.jpg', content_type: 'image/jpg')
 bio_jaime.photo.attach(io: foto_jaime, filename: 'bio_jaime.jpg', content_type: 'image/jpg')
 
-puts 'Adding exchanges'
+# puts 'Adding exchanges'
 
-Exchange.create!(name: 'ripio', user: joel, read_key:	'U2FsdGVkX1+haSn1gwG3NynyIau92i3woZNF524K8yH17wujjGCqYriiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92i3woZNF524KhyH17wujjGCqYoiiEmyMPT9s')
-Exchange.create!(name: 'binance', user: maxi, read_key: 'U2FsdGVkX1+haSn1awG3NynyIau92s3woZNF524K8yH17wujjGCwYoiiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92i3woZNF52hK8yH17wujjGCqYoiiEmyMPT9s')
-Exchange.create!(name: 'huobi', user: jaime, read_key: 'U2FsdGVkX1+hadn1awG3NynyIau92i3woZNF524K8yH17wujjGCqqoiiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92h3woZNF524h8yH17wujjGCqYoiiEmyMPT9s')
-Exchange.create!(name: 'bingx', user: luca, read_key: 'U2FsdGVkX1+haSn1awf3NynyIau92i3woZNF524K8yH17wujjGCqYriiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92ihwoZNF524K8yH17wujjGCqYoiiEmyMPT9s')
+# Exchange.create!(name: 'ripio', user: joel, read_key:	'U2FsdGVkX1+haSn1gwG3NynyIau92i3woZNF524K8yH17wujjGCqYriiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92i3woZNF524KhyH17wujjGCqYoiiEmyMPT9s')
+# Exchange.create!(name: 'binance', user: maxi, read_key: 'U2FsdGVkX1+haSn1awG3NynyIau92s3woZNF524K8yH17wujjGCwYoiiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92i3woZNF52hK8yH17wujjGCqYoiiEmyMPT9s')
+# Exchange.create!(name: 'huobi', user: jaime, read_key: 'U2FsdGVkX1+hadn1awG3NynyIau92i3woZNF524K8yH17wujjGCqqoiiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92h3woZNF524h8yH17wujjGCqYoiiEmyMPT9s')
+# Exchange.create!(name: 'bingx', user: luca, read_key: 'U2FsdGVkX1+haSn1awf3NynyIau92i3woZNF524K8yH17wujjGCqYriiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92ihwoZNF524K8yH17wujjGCqYoiiEmyMPT9s')
 
 puts 'Subscribing users'
 
@@ -79,3 +78,37 @@ Position.create!(trade: trade4, subscription: subsc_jaime)
 Position.create!(trade: trade4, subscription: subsc_joel)
 
 puts 'All set'
+
+
+
+
+
+
+
+
+34.times do
+  user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8))
+  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, rendimiento: Faker::Number.decimal(l_digits: 2), user: user)
+  bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
+  Faker::Number.within(range: 0..10).times do
+    Trade.create!(trader: user, symbol: 'btc', side: 'buy', entry_price: Faker::Number.within(range: 19500.0..21000.0).round(2), take_profit: Faker::Number.within(range: 21000.0..25000.0).round(2), stop_loss: Faker::Number.within(range: 10000.0..19500.0).round(2))
+  end
+end
+
+33.times do
+  user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8))
+  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, rendimiento: Faker::Number.decimal(l_digits: 2), user: user)
+  bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
+  Faker::Number.within(range: 0..10).times do
+    Trade.create!(trader: user, symbol: 'eth', side: 'sell', entry_price: Faker::Number.within(range: 900.0..1050.0).round(2), take_profit: Faker::Number.within(range: 500.0..900.0).round(2), stop_loss: Faker::Number.within(range: 1050.0..1230.0).round(2))
+  end
+end
+
+33.times do
+  user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8))
+  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, rendimiento: Faker::Number.decimal(l_digits: 2), user: user)
+  bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
+  Faker::Number.within(range: 0..10).times do
+    Trade.create!(trader: user, symbol: 'zec', side: 'buy', entry_price: Faker::Number.within(range: 60.0..64.0).round(2), take_profit: Faker::Number.within(range: 64.0..70.0).round(2), stop_loss: Faker::Number.within(range: 56.0..60.0).round(2))
+  end
+end
