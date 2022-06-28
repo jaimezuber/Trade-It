@@ -20,7 +20,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = Subscription.create(rev_params)
+    @subscription = Subscription.new(rev_params)
     @trader = User.find(params[:user_id])
     @subscription.subscriber = current_user
     @subscription.trader = @trader
