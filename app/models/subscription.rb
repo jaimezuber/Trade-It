@@ -6,6 +6,7 @@ class Subscription < ApplicationRecord
   # scope :trader_suscriptions, -> { where(current_user.id == self.subscriber_id) }
 
   validate :amount_logic
+  validates :subscriber, uniqueness: { scope: :trader, message: "you are already subscribed" }
 
   private
 
