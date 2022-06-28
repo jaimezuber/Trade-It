@@ -36,6 +36,11 @@ class BiosController < ApplicationController
     @result = JSON.parse response.to_str
   end
 
+  def profile
+    @bio = current_user.bio
+    authorize @bio
+  end
+
   private
 
   def rev_params
