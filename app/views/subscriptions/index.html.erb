@@ -1,0 +1,11 @@
+<h1>Aca se ven las suscripciones que soy trader. Mis suscriptores</h1>
+<% @subscriptions_trader.each do |subscription| %>
+  <%= subscription.subscriber.bio.username %>
+<% end %>
+<br>
+<br>
+<br>
+<h1>Aca se ven las suscripciones que soy subscriptor. Mis subscripciones</h1>
+<% @subscriptions_subscriber.each do |subscription| %>
+  <%= subscription.trader.bio.username %>
+<% end %>
