@@ -15,8 +15,14 @@
               </div>
             </div>
             <div class="mt-5 flex justify-center sm:mt-0">
-              <% @user = @bio.user  %>
-              <%= link_to 'Copiar', new_user_subscription_path(@user), class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 boton-copiar" %>
+              <% @user = @bio.user %>
+              <% if !user_signed_in? %>
+                <%= link_to 'Copiar', new_user_session_path, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 boton-copiar" %>
+              <% elsif current_user.exchange.nil? %>
+                <%= link_to 'Copiar', new_exchange_path(@user), class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 boton-copiar" %>
+              <% else %>
+                <%= link_to 'Copiar', new_user_subscription_path(@user), class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 boton-copiar" %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -51,7 +57,7 @@
         </div>
       </div>
       <div class="row">
-        
+
           <% @bio.user.trades.each do |trade|%>
           <li class="p-5 border-t bg-white" style="list-style: none;">
             <div class="top-card">
@@ -75,7 +81,7 @@
                     <% end %>
                   </div>
               </div>
-              
+
                 <div class="level">
                   <div class="pl-6 py-1 text-sm font-medium text-center level-item">
                     <span class="tag is-light is-link is-medium">Coin:</span>
@@ -105,8 +111,10 @@
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
                           <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+
                           <span class="tag is-light is-link is-medium">Rolling PnL:</span>
-                            <%= (((ticker['last_price'].to_i / trade.entry_price) -1)*100).round() %>%
+                            <%= (((ticker['last_price'].to_f / trade.entry_price) -1)*100).round() %>%
+
                           <% end %>
                         <% end %>
                         <% else %>

@@ -21,18 +21,18 @@ foto_luca = URI.open('https://www.dzoom.org.es/wp-content/uploads/2020/02/portad
 
 puts 'Creating users'
 
-joel = User.create(email: 'joel@gmail.com', password: 'joelsito')
-maxi = User.create(email: 'maxi@gmail.com', password: 'maxito')
-jaime = User.create(email: 'jaime@gmail.com', password: 'jaimesito')
-luca = User.create(email: 'luca@gmail.com', password: 'luquita')
+joel = User.create!(email: 'joel@gmail.com', password: 'joelsito')
+maxi = User.create!(email: 'maxi@gmail.com', password: 'maxito')
+jaime = User.create!(email: 'jaime@gmail.com', password: 'jaimesito')
+luca = User.create!(email: 'luca@gmail.com', password: 'luquita')
 
 puts 'Failed creating user' if jaime.id.nil?
 puts 'Adding bios'
 
-bio_joel = Bio.create(username: 'Joel', description: 'Me llamo joel y no hago trading', user: joel)
-bio_maxi = Bio.create(username: 'Maxi', description: 'Me llamo maxi y no hago trading', user: maxi)
-bio_jaime = Bio.create(username: 'Jaime', description: 'Me llamo jaime y no hago trading', user: jaime)
-bio_luca = Bio.create(username: 'Luca', description: 'Me llamo luca y hago trading', user: luca)
+bio_joel = Bio.create!(username: 'Joel Jaldin', description: 'Me llamo joel y no hago trading', user: joel)
+bio_maxi = Bio.create!(username: 'Maxi Zatta', description: 'Me llamo maxi y no hago trading', user: maxi)
+bio_jaime = Bio.create!(username: 'Jaime Zuber', description: 'Me llamo jaime y no hago trading', user: jaime)
+bio_luca = Bio.create!(username: 'Luca Pagano', description: 'Me llamo luca y hago trading', user: luca)
 
 bio_joel.photo.attach(io: foto_joel, filename: 'bio_joel.jpg', content_type: 'image/jpg')
 bio_luca.photo.attach(io: foto_luca, filename: 'bio_luca.jpg', content_type: 'image/jpg')
@@ -41,16 +41,16 @@ bio_jaime.photo.attach(io: foto_jaime, filename: 'bio_jaime.jpg', content_type: 
 
 puts 'Adding exchanges'
 
-Exchange.create(name: 'ripio', user: joel)
-Exchange.create(name: 'binance', user: maxi)
-Exchange.create(name: 'huobi', user: jaime)
-Exchange.create(name: 'bingx', user: luca)
+Exchange.create!(name: 'ripio', user: joel, read_key:	'U2FsdGVkX1+haSn1gwG3NynyIau92i3woZNF524K8yH17wujjGCqYriiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92i3woZNF524KhyH17wujjGCqYoiiEmyMPT9s')
+Exchange.create!(name: 'binance', user: maxi, read_key: 'U2FsdGVkX1+haSn1awG3NynyIau92s3woZNF524K8yH17wujjGCwYoiiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92i3woZNF52hK8yH17wujjGCqYoiiEmyMPT9s')
+Exchange.create!(name: 'huobi', user: jaime, read_key: 'U2FsdGVkX1+hadn1awG3NynyIau92i3woZNF524K8yH17wujjGCqqoiiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92h3woZNF524h8yH17wujjGCqYoiiEmyMPT9s')
+Exchange.create!(name: 'bingx', user: luca, read_key: 'U2FsdGVkX1+haSn1awf3NynyIau92i3woZNF524K8yH17wujjGCqYriiEmyMPT9s' , write_key: 'U2FsdGVkX1+haSn1awG3NynyIau92ihwoZNF524K8yH17wujjGCqYoiiEmyMPT9s')
 
 puts 'Subscribing users'
 
-subsc_maxi = Subscription.new(trader: luca, subscriber: maxi, amount_per_trade: 100, max_amount: 500)
-subsc_joel = Subscription.new(trader: luca, subscriber: joel, amount_per_trade: 50, max_amount: 200)
-subsc_jaime = Subscription.new(trader: luca, subscriber: jaime, amount_per_trade: 150, max_amount: 1000)
+subsc_maxi = Subscription.create!(trader: luca, subscriber: maxi, amount_per_trade: 100, max_amount: 500)
+subsc_joel = Subscription.create!(trader: luca, subscriber: joel, amount_per_trade: 50, max_amount: 200)
+subsc_jaime = Subscription.create!(trader: luca, subscriber: jaime, amount_per_trade: 150, max_amount: 1000)
 
 
 puts 'Adding trades to luca'
@@ -62,20 +62,20 @@ trade4 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 38
 
 puts 'Implementing positions'
 
-Position.create(trade: trade1, subscription: subsc_jaime)
-Position.create(trade: trade1, subscription: subsc_maxi)
+Position.create!(trade: trade1, subscription: subsc_jaime)
+Position.create!(trade: trade1, subscription: subsc_maxi)
 
 puts 'position2'
-Position.create(trade: trade2, subscription: subsc_jaime)
+Position.create!(trade: trade2, subscription: subsc_jaime)
 
 puts 'position3'
-Position.create(trade: trade3, subscription: subsc_jaime)
-Position.create(trade: trade3, subscription: subsc_maxi)
-Position.create(trade: trade3, subscription: subsc_joel)
+Position.create!(trade: trade3, subscription: subsc_jaime)
+Position.create!(trade: trade3, subscription: subsc_maxi)
+Position.create!(trade: trade3, subscription: subsc_joel)
 
 puts 'position4'
-Position.create(trade: trade4, subscription: subsc_maxi)
-Position.create(trade: trade4, subscription: subsc_jaime)
-Position.create(trade: trade4, subscription: subsc_joel)
+Position.create!(trade: trade4, subscription: subsc_maxi)
+Position.create!(trade: trade4, subscription: subsc_jaime)
+Position.create!(trade: trade4, subscription: subsc_joel)
 
 puts 'All set'
