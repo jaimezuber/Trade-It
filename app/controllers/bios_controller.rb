@@ -22,6 +22,12 @@ class BiosController < ApplicationController
     @bios = policy_scope(Bio).reject do |bio|
       bio.user.trades.empty?
     end
+
+    if params[:query].present?
+      @bios = Bio.search_by_username(params[:query])
+      else
+      @bios = Bio.all
+    end
   end
 
   def show

@@ -2,6 +2,21 @@
 		<div class="container">
 			<br>
 			<br>
+      <div class="level">
+        <h3 class="tag is-link is-large mb-4 level-left">Explorá Traders</h3>
+        <div class="level-right">
+          <%= form_tag bios_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "border border-transparent",
+              style: "border-radius: 3%;",
+              placeholder: "Buscá a un trader"
+            %>
+            <%= submit_tag "", class: "" %>
+          <% end %>
+        </div>
+      </div>
+
         <div class="row">
           <% @bios.each do |bio| %>
             <div class="col-sm-6 col-md-6 col-lg-4">
