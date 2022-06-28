@@ -7,7 +7,7 @@ class ExchangesController < ApplicationController
   end
 
   def create
-    @exchange = Exchange.create(rev_params)
+    @exchange = Exchange.new(rev_params)
     @exchange.user = current_user
     authorize @exchange
     if @exchange.save
