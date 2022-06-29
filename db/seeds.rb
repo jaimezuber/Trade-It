@@ -116,10 +116,11 @@ Trade.all.each do |trade|
 end
 
 Bio.all.each do |bio|
-  bio.rendimiento = 0
+  bio.rendimiento = 0.0
   bio.user.trades.each do |trade|
     bio.rendimiento += trade.pnl unless trade.pnl.nil?
   end
+  bio.rendimiento.round(2)
   bio.save!
 end
 
