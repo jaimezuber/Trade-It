@@ -67,7 +67,7 @@
               <div class="flex space-x-3">
                   <%= cl_image_tag(@bio.photo.key,  height: 64, width: 64, crop: :fill, :radius => 100) %>
                   <div class="flex-1 space-y-1 level">
-                    <p class="level-left pl-5 is-size-5">Luca Pagano</p>
+                    <p class="level-left pl-5 is-size-5"><%= @bio.username %></p>
                     <p class="tag is-success is-medium space-x-reverse">LONG</p>
                     <% if trade.exit_price.nil? %>
                       <p class="tag is-light is-medium space-x-reverse">OPEN</p>
