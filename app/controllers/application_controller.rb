@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :check_bio
   include Pundit
 
   # Pundit: white-list approach.
@@ -17,5 +17,13 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def check_bio
+    if user_signed_in?
+      if current_user.bio.nil?
+        redirect_to new_bio_path
+      end
+    end
   end
 end

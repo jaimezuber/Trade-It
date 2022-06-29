@@ -1,5 +1,5 @@
 class BiosController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, :check_bio, only: %i[index show]
 
   def new
     @bio = Bio.new
@@ -20,7 +20,9 @@ class BiosController < ApplicationController
 
   def index
     if params[:query].present?
-      @bios = policy_scope(Bio).search_by_username(params[:query])
+      @bios = policy_scope(Bio).search_by_username(params[:query]).reject do |bio|
+        bio.user.trades.empty?
+      end
     else
       @bios = policy_scope(Bio).reject do |bio|
         bio.user.trades.empty?

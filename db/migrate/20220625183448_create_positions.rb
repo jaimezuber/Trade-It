@@ -6,6 +6,7 @@ class CreatePositions < ActiveRecord::Migration[6.1]
       t.float :open_price
       t.float :close_price
       t.string :external_id
+      t.float :pnl
 
       t.timestamps
     end
