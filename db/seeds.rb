@@ -51,7 +51,6 @@ subsc_maxi = Subscription.create!(trader: luca, subscriber: maxi, amount_per_tra
 subsc_joel = Subscription.create!(trader: luca, subscriber: joel, amount_per_trade: 50, max_amount: 200)
 subsc_jaime = Subscription.create!(trader: luca, subscriber: jaime, amount_per_trade: 150, max_amount: 1000)
 
-
 puts 'Adding trades to luca'
 
 trade1 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, take_profit: 22_000, stop_loss: 19_000)
@@ -77,38 +76,51 @@ Position.create!(trade: trade4, subscription: subsc_maxi)
 Position.create!(trade: trade4, subscription: subsc_jaime)
 Position.create!(trade: trade4, subscription: subsc_joel)
 
-puts 'All set'
+puts 'generating random traders'
 
-
-
-
-
-
-
-
-34.times do
+15.times do
   user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8))
-  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, rendimiento: Faker::Number.decimal(l_digits: 2), user: user)
+  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, user: user)
   bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
   Faker::Number.within(range: 0..10).times do
     Trade.create!(trader: user, symbol: 'btc', side: 'buy', entry_price: Faker::Number.within(range: 19500.0..21000.0).round(2), take_profit: Faker::Number.within(range: 21000.0..25000.0).round(2), stop_loss: Faker::Number.within(range: 10000.0..19500.0).round(2))
   end
 end
 
-33.times do
+puts 'first 15 done'
+
+15.times do
   user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8))
-  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, rendimiento: Faker::Number.decimal(l_digits: 2), user: user)
+  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, user: user)
   bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
   Faker::Number.within(range: 0..10).times do
-    Trade.create!(trader: user, symbol: 'eth', side: 'sell', entry_price: Faker::Number.within(range: 900.0..1050.0).round(2), take_profit: Faker::Number.within(range: 500.0..900.0).round(2), stop_loss: Faker::Number.within(range: 1050.0..1230.0).round(2))
+    Trade.create!(trader: user, symbol: 'eth', side: 'sell', exit_price: Faker::Number.within(range: 500.0..1230.0), entry_price: Faker::Number.within(range: 900.0..1050.0).round(2), take_profit: Faker::Number.within(range: 500.0..900.0).round(2), stop_loss: Faker::Number.within(range: 1050.0..1230.0).round(2))
   end
 end
 
-33.times do
+puts 'second 15 done, 30 on the go'
+
+15.times do
   user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8))
-  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, rendimiento: Faker::Number.decimal(l_digits: 2), user: user)
+  bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, user: user)
   bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
   Faker::Number.within(range: 0..10).times do
-    Trade.create!(trader: user, symbol: 'zec', side: 'buy', entry_price: Faker::Number.within(range: 60.0..64.0).round(2), take_profit: Faker::Number.within(range: 64.0..70.0).round(2), stop_loss: Faker::Number.within(range: 56.0..60.0).round(2))
+    Trade.create!(trader: user, symbol: 'zec', side: 'buy', exit_price: Faker::Number.within(range: 500.0..1230.0), entry_price: Faker::Number.within(range: 60.0..64.0).round(2), take_profit: Faker::Number.within(range: 64.0..70.0).round(2), stop_loss: Faker::Number.within(range: 56.0..60.0).round(2))
   end
 end
+
+puts '45 traders generated. Now their profits and loss'
+Trade.all.each do |trade|
+  trade.pnl = ((trade.exit_price / trade.entry_price) - 1).round(2) unless trade.exit_price.nil?
+  trade.save!
+end
+
+Bio.all.each do |bio|
+  bio.rendimiento = 0
+  bio.user.trades.each do |trade|
+    bio.rendimiento += trade.pnl unless trade.pnl.nil?
+  end
+  bio.save!
+end
+
+puts 'All set'
