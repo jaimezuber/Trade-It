@@ -15,7 +15,7 @@ class Bio < ApplicationRecord
   private
 
   def two_digits
-    self.rendimiento = rendimiento.round(2)
-    self.volatilidad = volatilidad.round(2)
+    self.rendimiento = rendimiento&.round(2)
+    self.volatilidad = volatilidad&.round(2)
   end
 end
