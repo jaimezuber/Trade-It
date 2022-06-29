@@ -33,7 +33,13 @@
                     <h6 class="py-3 mt-1">Trades:</h6>
                     <h5 class="py-3 mt-1 ml-2">250</h5>
                   </div>
-                  <span class="text-success font-weight-bold py-3">+50% since last month</span>
+                  <% if bio.rendimiento > 0 %>
+                    <span class="font-weight-bold py-3"><strong class="text-success"><%= bio.rendimiento%>%</strong> since last month</span>
+                  <% elsif bio.rendimiento < 0%>
+                      <span class="font-weight-bold py-3"><strong class="text-danger"><%= bio.rendimiento%>%</strong> since last month</span>
+                  <% else %>
+                      <span class="font-weight-bold py-3"><strong class=""><%= bio.rendimiento%>%</strong> since last month</span>
+                 <% end %> 
                 </div>
                 <% end %>
               </div>
