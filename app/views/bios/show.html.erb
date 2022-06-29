@@ -68,20 +68,33 @@
                   <%= cl_image_tag(@bio.photo.key,  height: 64, width: 64, crop: :fill, :radius => 100) %>
                   <div class="flex-1 space-y-1 level">
                     <p class="level-left pl-5 is-size-5"><%= @bio.username %></p>
-                    <p class="tag is-success is-medium space-x-reverse">LONG</p>
-                    <% if trade.exit_price.nil? %>
-                      <p class="tag is-light is-medium space-x-reverse">OPEN</p>
-                      <% else %>
-                      <% @result.each do |ticker| %>
-                        <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
-                          <% if trade.exit_price > trade.entry_price %>
-                            <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
+
+
+                    <div class="tags has-addons">
+                      <% if trade.side == "BUY" %>
+                        <p class="tag is-medium space-x-reverse">LONG</p>
+                        <% if trade.exit_price.nil? %>
+                          <p class="tag is-light is-medium space-x-reverse">OPEN</p>
+                        <% else %>
+                          <% if trade.exit_price >= trade.entry_price %>
+                           <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
                           <% else %>
-                            <p class="tag is-danger is-medium space-x-reverse">LOSE</p>
+                            <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
                           <% end %>
                         <% end %>
+                      <% else %>
+                        <p class="tag is-medium space-x-reverse">SHORT</p>
+                        <% if trade.exit_price.nil? %>
+                          <p class="tag is-light is-medium space-x-reverse">OPEN</p>
+                          <% else %>
+                            <% if trade.exit_price <= trade.entry_price %>
+                             <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
+                            <% else %>
+                              <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
+                            <% end %>
+                        <% end %>
                       <% end %>
-                    <% end %>
+                    </div>
                   </div>
               </div>
 
@@ -99,7 +112,7 @@
 
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
-                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                          <% if ticker['base'] == trade.symbol && ticker['quote'] == 'USDC' %>
                           <span class="tag is-light is-link is-medium">Market:</span>
                            <span class="text-gray-600 pl-2"> <%= ticker['last_price'].to_i.round() %></span>
                           <% end %>
@@ -113,16 +126,19 @@
                     <p class="text-gray-600 pl-2">
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
-                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                          <% if ticker['base'] == trade.symbol && ticker['quote'] == 'USDC' %>
 
                           <span class="tag is-light is-link is-medium">Rolling PnL:</span>
                             <%= (((ticker['last_price'].to_f / trade.entry_price) -1)*100).round() %>%
-
                           <% end %>
                         <% end %>
                         <% else %>
-                        <span class="tag is-light is-link is-medium">PnL:</span>
-                          <%= (((trade.exit_price / trade.entry_price) -1)*100).round() %>%
+                          <span class="tag is-light is-link is-medium">PnL:</span>
+                          <% if trade.side == "BUY" %>
+                            <%= (((trade.exit_price / trade.entry_price) -1)*100).round() %>%
+                          <% else %>
+                            <%= -(((trade.exit_price / trade.entry_price) -1)*100).round() %>%
+                          <% end %>
                       <% end %>
                     </span>
                   </div>
