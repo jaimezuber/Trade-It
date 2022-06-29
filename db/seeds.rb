@@ -94,7 +94,7 @@ puts 'first 15 done'
   bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, user: user)
   bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
   Faker::Number.within(range: 0..10).times do
-    Trade.create!(trader: user, symbol: 'eth', side: 'sell', exit_price: Faker::Number.within(range: 500.0..1230.0), entry_price: Faker::Number.within(range: 900.0..1050.0).round(2), take_profit: Faker::Number.within(range: 500.0..900.0).round(2), stop_loss: Faker::Number.within(range: 1050.0..1230.0).round(2))
+    Trade.create!(trader: user, symbol: 'eth', side: 'sell', exit_price: Faker::Number.within(range: 800.0..1230.0), entry_price: Faker::Number.within(range: 900.0..1050.0).round(2), take_profit: Faker::Number.within(range: 500.0..900.0).round(2), stop_loss: Faker::Number.within(range: 1050.0..1230.0).round(2))
   end
 end
 
@@ -105,13 +105,13 @@ puts 'second 15 done, 30 on the go'
   bio = Bio.create!(username: Faker::Name.name, description: Faker::Hacker.say_something_smart, user: user)
   bio.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: Faker::Name.unique.name, content_type: 'image/jpg')
   Faker::Number.within(range: 0..10).times do
-    Trade.create!(trader: user, symbol: 'zec', side: 'buy', exit_price: Faker::Number.within(range: 500.0..1230.0), entry_price: Faker::Number.within(range: 60.0..64.0).round(2), take_profit: Faker::Number.within(range: 64.0..70.0).round(2), stop_loss: Faker::Number.within(range: 56.0..60.0).round(2))
+    Trade.create!(trader: user, symbol: 'zec', side: 'buy', exit_price: Faker::Number.within(range: 58.0..65.0), entry_price: Faker::Number.within(range: 60.0..64.0).round(2), take_profit: Faker::Number.within(range: 64.0..70.0).round(2), stop_loss: Faker::Number.within(range: 56.0..60.0).round(2))
   end
 end
 
 puts '45 traders generated. Now their profits and loss'
 Trade.all.each do |trade|
-  trade.pnl = ((trade.exit_price / trade.entry_price) - 1).round(2) unless trade.exit_price.nil?
+  trade.pnl = (((trade.exit_price / trade.entry_price) - 1) * 100).round(2) unless trade.exit_price.nil?
   trade.save!
 end
 
