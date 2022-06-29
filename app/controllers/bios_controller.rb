@@ -1,5 +1,5 @@
 class BiosController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, :check_bio, only: %i[index show]
 
   def new
     @bio = Bio.new
