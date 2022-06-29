@@ -46,5 +46,6 @@ class Trade < ApplicationRecord
     self.exit_price = exit_price&.round(2)
     self.take_profit = take_profit&.round(2)
     self.stop_loss = stop_loss&.round(2)
+    self.pnl = pnl.round(2)
   end
 end
