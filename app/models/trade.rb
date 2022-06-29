@@ -39,13 +39,10 @@ class Trade < ApplicationRecord
   end
 
   def two_digits
-    puts entry_price
     self.entry_price = entry_price&.round(2)
-    puts 'afterrrrrrr'
-    puts entry_price
     self.exit_price = exit_price&.round(2)
     self.take_profit = take_profit&.round(2)
     self.stop_loss = stop_loss&.round(2)
-    self.pnl = pnl.round(2)
+    self.pnl = pnl&.round(2)
   end
 end
