@@ -76,14 +76,10 @@
                         <% if trade.exit_price.nil? %>
                           <p class="tag is-light is-medium space-x-reverse">OPEN</p>
                         <% else %>
-                          <% @result.each do |ticker| %>
-                            <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
-                              <% if trade.exit_price >= trade.entry_price %>
-                               <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
-                              <% else %>
-                                <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
-                              <% end %>
-                            <% end %>
+                          <% if trade.exit_price >= trade.entry_price %>
+                           <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
+                          <% else %>
+                            <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
                           <% end %>
                         <% end %>
                       <% else %>
@@ -91,14 +87,10 @@
                         <% if trade.exit_price.nil? %>
                           <p class="tag is-light is-medium space-x-reverse">OPEN</p>
                           <% else %>
-                            <% @result.each do |ticker| %>
-                              <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
-                                <% if trade.exit_price <= trade.entry_price %>
-                                 <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
-                                <% else %>
-                                  <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
-                                <% end %>
-                              <% end %>
+                            <% if trade.exit_price <= trade.entry_price %>
+                             <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
+                            <% else %>
+                              <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
                             <% end %>
                         <% end %>
                       <% end %>
@@ -120,7 +112,7 @@
 
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
-                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                          <% if ticker['base'] == trade.symbol && ticker['quote'] == 'USDC' %>
                           <span class="tag is-light is-link is-medium">Market:</span>
                            <span class="text-gray-600 pl-2"> <%= ticker['last_price'].to_i.round() %></span>
                           <% end %>
@@ -134,7 +126,7 @@
                     <p class="text-gray-600 pl-2">
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
-                          <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                          <% if ticker['base'] == trade.symbol && ticker['quote'] == 'USDC' %>
 
                           <span class="tag is-light is-link is-medium">Rolling PnL:</span>
                             <%= (((ticker['last_price'].to_f / trade.entry_price) -1)*100).round() %>%
