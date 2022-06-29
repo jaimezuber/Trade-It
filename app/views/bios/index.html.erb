@@ -22,22 +22,18 @@
             <div class="col-sm-6 col-md-6 col-lg-4">
               <div class="card bg-white p-3 mb-4 shadow is-clickable">
                 <%= link_to bio_path(bio) do %>
-                <div class="d-flex justify-content-between mb-4">
                   <div class="user-info">
-                    <div class="user-info__img">
+                    <div class="d-flex">
                       <%= cl_image_tag bio.photo.key, height: 90, width: 130, crop: :fill %>
-                    </div>
-                    <div class="user-info__basic">
-                      <h5 class="mb-0"><%= bio.username %></h5>
+                      <h5 class="pl-4 pt-3"> <strong> <%= bio.username %> </strong></h5>
                     </div>
                   </div>
-                </div>
-                <h6 class="mb-0">Trades</h6>
-                <div class="d-flex justify-content-between mt-4">
-                  <div>
-                    <h5 class="mb-0">250</h5>
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex">
+                    <h6 class="py-3 mt-1">Trades:</h6>
+                    <h5 class="py-3 mt-1 ml-2">250</h5>
                   </div>
-                  <span class="text-success font-weight-bold">+50% since last month</span>
+                  <span class="text-success font-weight-bold py-3">+50% since last month</span>
                 </div>
                 <% end %>
               </div>
