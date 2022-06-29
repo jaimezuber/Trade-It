@@ -120,7 +120,6 @@ Bio.all.each do |bio|
   bio.user.trades.each do |trade|
     bio.rendimiento += trade.pnl unless trade.pnl.nil?
   end
-  bio.rendimiento
   bio.save!
 end
 
