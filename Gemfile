@@ -22,6 +22,7 @@ gem 'rest-client', '~> 2.1'
 gem 'pundit'
 gem 'faker'
 gem 'open-uri'
+gem 'pg_search', '~> 2.3.0'
 gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
