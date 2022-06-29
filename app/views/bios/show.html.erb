@@ -75,16 +75,16 @@
                         <p class="tag is-medium space-x-reverse">LONG</p>
                         <% if trade.exit_price.nil? %>
                           <p class="tag is-light is-medium space-x-reverse">OPEN</p>
-                          <% else %>
-                            <% @result.each do |ticker| %>
-                              <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
-                                <% if trade.exit_price >= trade.entry_price %>
-                                 <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
-                                <% else %>
-                                  <p class="tag is-danger is-medium space-x-reverse">LOSE</p>
-                                <% end %>
+                        <% else %>
+                          <% @result.each do |ticker| %>
+                            <% if ticker['base'] == trade.symbol.upcase && ticker['quote'] == 'USDC' %>
+                              <% if trade.exit_price >= trade.entry_price %>
+                               <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
+                              <% else %>
+                                <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
                               <% end %>
                             <% end %>
+                          <% end %>
                         <% end %>
                       <% else %>
                         <p class="tag is-medium space-x-reverse">SHORT</p>
@@ -96,7 +96,7 @@
                                 <% if trade.exit_price <= trade.entry_price %>
                                  <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
                                 <% else %>
-                                  <p class="tag is-danger is-medium space-x-reverse">LOSE</p>
+                                  <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
                                 <% end %>
                               <% end %>
                             <% end %>
