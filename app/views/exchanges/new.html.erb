@@ -2,7 +2,7 @@
   <br><br><br>
   <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto p-5 bg-white " style="width: 50%;">
     <div>
-      <%= simple_form_for(@exchange) do |f| %>
+      <%= simple_form_for(@exchange, remote: true) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <div class="form-group">
