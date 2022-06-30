@@ -111,7 +111,11 @@ end
 
 puts '45 traders generated. Now their profits and loss'
 Trade.all.each do |trade|
-  trade.pnl = (((trade.exit_price / trade.entry_price) - 1) * 100) unless trade.exit_price.nil?
+  if trade.side == 'BUY'
+    trade.pnl = (((trade.exit_price / trade.entry_price) - 1) * 100) unless trade.exit_price.nil?
+  else
+    trade.pnl = ((1 - (trade.exit_price / trade.entry_price)) * 100) unless trade.exit_price.nil?
+  end
   trade.save!
 end
 

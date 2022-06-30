@@ -1,11 +1,61 @@
-<h1>Aca se ven las suscripciones que soy trader. Mis suscriptores</h1>
-<% @subscriptions_trader.each do |subscription| %>
-  <%= subscription.subscriber.bio.username %>
-<% end %>
-<br>
-<br>
-<br>
-<h1>Aca se ven las suscripciones que soy subscriptor. Mis subscripciones</h1>
-<% @subscriptions_subscriber.each do |subscription| %>
-  <%= subscription.trader.bio.username %>
-<% end %>
+<div style="background-color: #EEF1FA;">
+  <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto bg-white mt-6 p-5" style="width: 75%;">
+    <span class="is-size-3">Mis suscriptores</span>
+    <div class="row">
+      <% @subscriptions_trader.each do |subscription| %>
+        <div class="col-sm-6 col-md-6 col-lg-4 pt-4">
+          <div class="card bg-white p-3 mb-4 shadow is-clickable">
+            <div class="user-info">
+              <div class="d-flex">
+                <%= cl_image_tag subscription.subscriber.bio.photo.key,  height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                <h5 class="pl-4 pt-3"> <strong> <%= subscription.subscriber.bio.username %> </strong></h5>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <h6 class="py-3 mt-1">Trades:</h6>
+                <h5 class="py-3 mt-1 ml-2"> </h5>
+              </div>
+              <% if subscription.subscriber.bio.rendimiento > 0 %>
+                <span class="font-weight-bold py-3"><strong class="text-success"><%= subscription.subscriber.bio.rendimiento%>%</strong> since last month</span>
+              <% elsif subscription.subscriber.bio.rendimiento < 0%>
+                  <span class="font-weight-bold py-3"><strong class="text-danger"><%= subscription.subscriber.bio.rendimiento%>%</strong> since last month</span>
+              <% else %>
+                  <span class="font-weight-bold py-3"><strong class=""><%= subscription.subscriber.bio.rendimiento%>%</strong> since last month</span>
+              <% end %> 
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <br>
+        <br>
+        <br>
+        <span class="is-size-3">Mis suscripciones</span>
+        <% @subscriptions_subscriber.each do |subscription| %>
+          <div class="col-sm-6 col-md-6 col-lg-4 pt-4">
+            <div class="card bg-white p-3 mb-4 shadow is-clickable">
+              <div class="user-info">
+                <div class="d-flex">
+                  <%= cl_image_tag subscription.trader.bio.photo.key, height: 90, width: 130, crop: :fill %>
+                  <h5 class="pl-4 pt-3"> <strong> <%= subscription.trader.bio.username %> </strong></h5>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                  <h6 class="py-3 mt-1">Trades:</h6>
+                  <h5 class="py-3 mt-1 ml-2"> </h5>
+                </div>
+                <% if subscription.trader.bio.rendimiento > 0 %>
+                  <span class="font-weight-bold py-3"><strong class="text-success"><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
+                <% elsif subscription.trader.bio.rendimiento < 0%>
+                    <span class="font-weight-bold py-3"><strong class="text-danger"><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
+                <% else %>
+                    <span class="font-weight-bold py-3"><strong class=""><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
+                <% end %> 
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
