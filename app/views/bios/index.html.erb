@@ -2,33 +2,46 @@
 		<div class="container">
 			<br>
 			<br>
+      <div class="level">
+        <h3 class="tag is-link is-large mb-4 level-left">Explorá Traders</h3>
+        <div class="level-right">
+          <%= form_tag bios_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "border border-transparent",
+              style: "border-radius: 3%;",
+              placeholder: "Buscá a un trader"
+            %>
+            <%= submit_tag "", class: "" %>
+          <% end %>
+        </div>
+      </div>
+
         <div class="row">
           <% @bios.each do |bio| %>
             <div class="col-sm-6 col-md-6 col-lg-4">
-              <div class="card bg-white p-3 mb-4 shadow">
-                <div class="d-flex justify-content-between mb-4">
+              <div class="card bg-white p-3 mb-4 shadow is-clickable">
+                <%= link_to bio_path(bio) do %>
                   <div class="user-info">
-                    <div class="user-info__img">
+                    <div class="d-flex">
                       <%= cl_image_tag bio.photo.key, height: 90, width: 130, crop: :fill %>
-                    </div>
-                    <div class="user-info__basic">
-                      <h5 class="mb-0"><%= bio.username %></h5>
+                      <h5 class="pl-4 pt-3"> <strong> <%= bio.username %> </strong></h5>
                     </div>
                   </div>
-                  <div>
-                    </a>
-                    <div>
-                      <%= link_to "More", bio_path(bio) %>
-                    </div>
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex">
+                    <h6 class="py-3 mt-1">Trades:</h6>
+                    <h5 class="py-3 mt-1 ml-2">250</h5>
                   </div>
+                  <% if bio.rendimiento > 0 %>
+                    <span class="font-weight-bold py-3"><strong class="text-success"><%= bio.rendimiento%>%</strong> since last month</span>
+                  <% elsif bio.rendimiento < 0%>
+                      <span class="font-weight-bold py-3"><strong class="text-danger"><%= bio.rendimiento%>%</strong> since last month</span>
+                  <% else %>
+                      <span class="font-weight-bold py-3"><strong class=""><%= bio.rendimiento%>%</strong> since last month</span>
+                 <% end %> 
                 </div>
-                <h6 class="mb-0">Trades</h6>
-                <div class="d-flex justify-content-between mt-4">
-                  <div>
-                    <h5 class="mb-0">250</h5>
-                  </div>
-                  <span class="text-success font-weight-bold">+50% since last month</span>
-                </div>
+                <% end %>
               </div>
             </div>
           <% end %>

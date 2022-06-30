@@ -2,7 +2,7 @@ class Trade < ApplicationRecord
   belongs_to :trader, class_name: "User", foreign_key: "trader_id"
   has_many :positions
 
-  before_validation :upcase
+  before_validation :upcase, :two_digits
   validates :symbol, inclusion: { in: ['BTC', 'ETH', 'BCH', 'ZEC', 'RCN', 'MTB18', 'LTC', 'RPC', 'UBI'],
                                   message: `%{value} no es una criptomoneda listada` }
   validates :symbol, :entry_price, :take_profit, :stop_loss, :side, presence: true
@@ -36,5 +36,13 @@ class Trade < ApplicationRecord
   def upcase
     symbol&.upcase!
     side&.upcase!
+  end
+
+  def two_digits
+    self.entry_price = entry_price&.round(2)
+    self.exit_price = exit_price&.round(2)
+    self.take_profit = take_profit&.round(2)
+    self.stop_loss = stop_loss&.round(2)
+    self.pnl = pnl&.round(2)
   end
 end
