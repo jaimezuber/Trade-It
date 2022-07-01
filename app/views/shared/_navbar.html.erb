@@ -14,8 +14,8 @@
           <li class="nav-item active">
             <%= link_to "Home", bios_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Subscriptions", subscriptions_path, class: "nav-link" %>
+          <li class="nav-item ml-1 mr-4">
+            <%= link_to "Portfolio", positions_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
           <% if current_user.bio %>
@@ -24,8 +24,8 @@
           <%= image_tag "avatar2.0.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "My portfolio", positions_path, class: "dropdown-item" %>
-              <%= link_to "My profile", profile_path, class: "dropdown-item" %>
+              <%= link_to "Subscriptions", subscriptions_path, class: "dropdown-item" %>
+              <%= link_to "Profile", profile_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>

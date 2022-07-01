@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[edit update]
+  before_action :check_balances, only: %i[new create]
 
   def index
     @subscriptions_trader = policy_scope(Subscription).select do |subscription|
@@ -27,8 +28,8 @@ class SubscriptionsController < ApplicationController
 
     authorize @subscription
 
-    if true
-      flash[:alert] = 'Tu balance en Ripio es de #{balance}'
+    if @balance < @subscription.max_amount
+      flash[:alert] = "Tu balance en Ripio es de #{@subscription.max_amount}"
       render :new
     elsif @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
@@ -58,5 +59,9 @@ class SubscriptionsController < ApplicationController
   def set_subscription
     @subscription = Subscription.find(params[:id])
     authorize @subscription
+  end
+
+  def check_balances
+
   end
 end

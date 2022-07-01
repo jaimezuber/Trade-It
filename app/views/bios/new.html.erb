@@ -1,1 +1,24 @@
-<h1>new bio</h1>
+<div style="background-color: #EEF1FA;">
+  <br><br><br>
+  <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto p-5 bg-white " style="width: 50%;">
+    <span class="is-size-3 "> Profile </span>
+    <div class="pt-3">
+      <%= simple_form_for @bio, remote: true do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <div class="form-group">
+          <div class="form-text">
+            <%= f.input :username, label: "Username", required: true %>
+          </div>
+          <div class="form-text">
+            <%= f.input :description, label: "Description", required: true %>
+          </div>
+          <%= f.input :photo %>
+          <div class="form-actions mx-auto d-flex justify-content-center pt-4">
+            <%= f.submit "Create Profile", class: "button is-link is-light" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

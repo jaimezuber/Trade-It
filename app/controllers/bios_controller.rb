@@ -8,13 +8,13 @@ class BiosController < ApplicationController
 
   def create
     @bio = Bio.new(rev_params)
-    @bio.user = current_user
     authorize @bio
+    @bio.user = current_user
     if @bio.save
       flash[:notice] = 'Account set'
       redirect_to bios_path
     else
-      render
+      render :new
     end
   end
 
