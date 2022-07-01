@@ -35,24 +35,30 @@
       Elegí tu riesgo y explorá traders
     </p>
     <div class="card-columns level ">
-      <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
-        <div class="title is-4 header text-center">
-          <h4> <%= link_to "Riesgo Bajo", "#", class: "tag is-link is-light is-large" %></h4>
-        </div>
-        <%= image_tag "low-risk.png", alt: "Low-risk", width: 350 %>
-      </div>
-       <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
-        <div class="title is-4 header text-center">
-          <h4> <%= link_to "Riesgo Medio", "#", class: "tag is-link is-light is-large" %></h4>
-        </div>
-        <%= image_tag "medium-risk.png", alt: "Med-risk", width: 350, :class =>"d-flex align-content-end" %>
-      </div>
-       <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+      <%= link_to bios_path(params: {riesgo: 'bajo'}) do %>
+        <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
           <div class="title is-4 header text-center">
-            <h4> <%= link_to "Riesgo Alto", "#", class: "tag is-link is-light is-large" %></h4>
+            <span class="tag is-link is-light is-large"> Riesgo Bajo </span>
           </div>
-        <%= image_tag "high-risk.png", alt: "High-risk", width: 350 %>
-      </div>
+          <%= image_tag "low-risk.png", alt: "Low-risk", width: 350 %>
+        </div>
+      <% end %>
+      <%= link_to bios_path(params: {riesgo: 'medio'}) do %>
+        <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+          <div class="title is-4 header text-center">
+            <span class="tag is-link is-light is-large"> Riesgo Medio </span>
+          </div>
+          <%= image_tag "medium-risk.png", alt: "Med-risk", width: 350 %>
+        </div>
+      <% end %>
+      <%= link_to bios_path(params: {riesgo: 'alto'}) do %>
+        <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+          <div class="title is-4 header text-center">
+            <span class="tag is-link is-light is-large"> Riesgo Alto </span>
+          </div>
+          <%= image_tag "high-risk.png", alt: "High-risk", width: 350 %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
