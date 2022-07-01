@@ -60,7 +60,7 @@ class BiosController < ApplicationController
 
     require 'json'
     require 'rest-client'
-    url = 'https://api.exchange.ripio.com/api/v1/rate/all/'
+    url = 'https://testnet.binancefuture.com/fapi/v1/premiumIndex'
 
     response = RestClient.get url
     @result = JSON.parse response.to_str

@@ -112,9 +112,9 @@
 
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
-                          <% if ticker['base'] == trade.symbol && ticker['quote'] == 'USDC' %>
+                          <% if ticker['symbol'] == trade.symbol.upcase.concat("USDT") %>
                           <span class="tag is-light is-link is-medium">Market:</span>
-                           <span class="text-gray-600 pl-2"> <%= ticker['last_price'].to_f.round(2) %></span>
+                           <span class="text-gray-600 pl-2"> <%= ticker['markPrice'].to_f.round(2) %></span>
                           <% end %>
                         <% end %>
                       <% else %>
@@ -126,10 +126,10 @@
                     <p class="text-gray-600 pl-2">
                       <% if trade.exit_price.nil? %>
                         <% @result.each do |ticker| %>
-                          <% if ticker['base'] == trade.symbol && ticker['quote'] == 'USDC' %>
+                          <% if ticker['symbol'] == trade.symbol.upcase.concat("USDT") %>
 
                           <span class="tag is-light is-link is-medium">Rolling PnL:</span>
-                            <%= (((ticker['last_price'].to_f / trade.entry_price) -1)*100).round(2) %>%
+                            <%= (((ticker['markPricer'].to_f / trade.entry_price) -1)*100).round(2) %>%
                           <% end %>
                         <% end %>
                         <% else %>
