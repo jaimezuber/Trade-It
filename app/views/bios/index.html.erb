@@ -5,9 +5,21 @@
       <div class="level">
         <h3 class="tag is-link is-large mb-4 level-left explore"><%= link_to 'Explorá traders', bios_path %></h3>
         <div class="tags are-medium p-3">
-          <span class="tag is-white"><%= link_to '# Riesgo Bajo', bios_path(params: {riesgo: 'bajo'}) %></span>
-          <span class="tag is-white"><%= link_to '# Riesgo Medio', bios_path(params: {riesgo: 'medio'}) %></span>
-          <span class="tag is-white"><%= link_to '# Riesgo Alto', bios_path(params: {riesgo: 'alto'}) %></span>
+          <% if params[:riesgo] == 'bajo'%>
+            <span class="tag is-blue"><%= link_to 'Riesgo Bajo' %></span>
+          <% else %>
+            <span class="tag is-white"><%= link_to 'Riesgo Bajo', bios_path(params: {riesgo: 'bajo'}) %></span>
+          <% end %>
+          <% if params[:riesgo] == 'medio' %>
+            <span class="tag is-blue"><%= link_to 'Riesgo Medio'%></span>
+          <% else %>
+            <span class="tag is-white"><%= link_to 'Riesgo Medio', bios_path(params: {riesgo: 'medio'}) %></span>
+          <% end %>
+          <% if params[:riesgo] == 'alto' %>
+            <span class="tag is-blue"><%= link_to 'Riesgo Alto' %></span>
+          <% else %>
+            <span class="tag is-white"><%= link_to 'Riesgo Alto', bios_path(params: {riesgo: 'alto'}) %></span>
+          <% end %>
         </div>
         <div class="level-right">
           <%= form_tag bios_path, method: :get do %>
@@ -44,7 +56,7 @@
                       <span class="font-weight-bold py-3"><strong class="text-danger"><%= bio.rendimiento%>%</strong> since last month</span>
                   <% else %>
                       <span class="font-weight-bold py-3"><strong class=""><%= bio.rendimiento%>%</strong> since last month</span>
-                 <% end %> 
+                 <% end %>
                 </div>
                 <% end %>
               </div>
@@ -54,3 +66,5 @@
 		</div>
   </div>
 </section>
+
+<%= console %>
