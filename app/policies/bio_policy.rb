@@ -7,7 +7,7 @@ class BioPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.bio.nil?
+    user.bio.nil?
   end
 
   def show?

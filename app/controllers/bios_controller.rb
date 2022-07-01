@@ -1,6 +1,6 @@
 class BiosController < ApplicationController
-  skip_before_action :authenticate_user!, :check_bio, only: %i[index show]
-
+  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :check_bio, only: %i[new create]
   def new
     @bio = Bio.new
     authorize @bio
@@ -8,13 +8,13 @@ class BiosController < ApplicationController
 
   def create
     @bio = Bio.new(rev_params)
-    @bio.user = current_user
     authorize @bio
+    @bio.user = current_user
     if @bio.save
       flash[:notice] = 'Account set'
       redirect_to bios_path
     else
-      render
+      render :new
     end
   end
 

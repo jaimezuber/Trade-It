@@ -14,8 +14,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
-    <%= render 'shared/navbar' %>
+  <body style="background-color: #EEF1FA;">
+    <%= render 'shared/navbar' unless action_name == 'home'%>
     <%= render 'shared/flashes' %>
 
     <%= yield %>
