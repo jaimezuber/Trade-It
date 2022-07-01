@@ -26,4 +26,14 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def after_sign_up_path_for(_resource)
+    # return the path based on resource
+    new_bio_path
+  end
+
+  def after_sign_in_path_for(_resource)
+    # return the path based on resource
+    bios_path
+  end
 end
