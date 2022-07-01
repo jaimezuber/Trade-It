@@ -129,7 +129,7 @@
                           <% if ticker['symbol'] == trade.symbol.upcase.concat("USDT") %>
 
                           <span class="tag is-light is-link is-medium">Rolling PnL:</span>
-                            <%= (((ticker['markPrice'].to_f / trade.entry_price) -1)*100).round(2) %>%
+                            <%= (((ticker['markPricer'].to_f / trade.entry_price) -1)*100).round(2) %>%
                           <% end %>
                         <% end %>
                         <% else %>
