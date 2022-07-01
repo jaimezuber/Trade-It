@@ -3,6 +3,7 @@ class ExchangesController < ApplicationController
 
   def new
     @exchange = Exchange.new
+    @user_id = params[:format]
     authorize @exchange
   end
 
@@ -12,7 +13,11 @@ class ExchangesController < ApplicationController
     authorize @exchange
     if @exchange.save
       flash[:notice] = 'Exchange guardado'
-      redirect_to profile_path
+      if params[:user_id].nil?
+        redirect_to profile_path
+      else
+        redirect_to new_user_subscription_path(User.find(params[:user_id]))
+      end
     else
       render :new
     end
