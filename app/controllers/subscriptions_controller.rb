@@ -28,7 +28,7 @@ class SubscriptionsController < ApplicationController
     authorize @subscription
 
     if true
-      flash[:notice] = 'Pusiste mal'
+      flash[:alert] = 'Tu balance en Ripio es de #{balance}'
       render :new
     elsif @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
