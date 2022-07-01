@@ -3,7 +3,12 @@
 			<br>
 			<br>
       <div class="level">
-        <h3 class="tag is-link is-large mb-4 level-left">Explorá Traders</h3>
+        <h3 class="tag is-link is-large mb-4 level-left explore"><%= link_to 'Explorá traders', bios_path %></h3>
+        <div class="tags are-medium">
+          <span class="tag is-white"><%= link_to 'riesgo alto', bios_path(params: {riesgo: 'alto'}) %></span>
+          <span class="tag is-white"><%= link_to 'riesgo medio', bios_path(params: {riesgo: 'medio'}) %></span>
+          <span class="tag is-white"><%= link_to 'riesgo bajo', bios_path(params: {riesgo: 'bajo'}) %></span>
+        </div>
         <div class="level-right">
           <%= form_tag bios_path, method: :get do %>
             <%= text_field_tag :query,

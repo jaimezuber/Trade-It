@@ -47,6 +47,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_median (0.3.3)
+      activesupport (>= 5.2)
     activejob (6.1.6)
       activesupport (= 6.1.6)
       globalid (>= 0.3.6)
@@ -72,6 +74,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.2.5.0)
       execjs (< 2.8.0)
+    average (3.1)
     aws_cf_signer (0.1.3)
     bcrypt (3.1.18)
     bindex (0.8.1)
@@ -299,7 +302,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_median
   autoprefixer-rails (= 10.2.5)
+  average
   bootsnap (>= 1.4.4)
   bulma-rails (~> 0.9.3)
   byebug
@@ -337,4 +342,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.3.10
+   2.3.8
