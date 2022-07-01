@@ -16,6 +16,10 @@ module TradeIt
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.to_prepare do
+      Devise::SessionsController.skip_before_action :check_bio
+      Devise::PasswordsController.skip_before_action :check_bio
+     end
 
     # Configuration for the application, engines, and railties goes here.
     #
