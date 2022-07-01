@@ -23,16 +23,9 @@ class BiosController < ApplicationController
       @bios = policy_scope(Bio).search_by_username(params[:query]).reject do |bio|
         bio.user.trades.empty?
       end
-    else
-      @bios = policy_scope(Bio).reject do |bio|
-        bio.user.trades.empty?
-      end
-    end
-
-
-    if params[:riesgo] == 'alto'
+    elsif params[:riesgo] == 'alto'
       @bios = policy_scope(Bio).select do |bio|
-        if bio.volatilidad != 0.0 
+        if bio.volatilidad != 0.0
           if bio.volatilidad > 70
             bio.user.trades
           end
@@ -40,22 +33,25 @@ class BiosController < ApplicationController
       end
     elsif params[:riesgo] == 'medio'
       @bios = policy_scope(Bio).select do |bio|
-        if bio.volatilidad != 0.0 
+        if bio.volatilidad != 0.0
           if bio.volatilidad > 40 && bio.volatilidad < 60
             bio.user.trades
           end
         end
       end
     elsif params[:riesgo] == 'bajo'
-     @bios = policy_scope(Bio).select do |bio|
-        if bio.volatilidad != 0.0 
+      @bios = policy_scope(Bio).select do |bio|
+        if bio.volatilidad != 0.0
           if bio.volatilidad < 20
             bio.user.trades
           end
         end
       end
+    else
+      @bios = policy_scope(Bio).reject do |bio|
+        bio.user.trades.empty?
+      end
     end
-
   end
 
   def show
