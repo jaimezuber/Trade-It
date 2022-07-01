@@ -26,7 +26,11 @@ class SubscriptionsController < ApplicationController
     @subscription.trader = @trader
 
     authorize @subscription
-    if @subscription.save
+
+    if true
+      flash[:notice] = 'Pusiste mal'
+      render :new
+    elsif @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
       redirect_to bio_path(@trader.bio)
     else
