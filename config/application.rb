@@ -19,7 +19,7 @@ module TradeIt
     config.to_prepare do
       Devise::SessionsController.skip_before_action :check_bio
       Devise::PasswordsController.skip_before_action :check_bio
-     end
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

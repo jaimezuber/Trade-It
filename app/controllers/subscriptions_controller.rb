@@ -29,7 +29,7 @@ class SubscriptionsController < ApplicationController
     authorize @subscription
 
     if @balance < @subscription.max_amount
-      flash[:alert] = "Tu balance en Ripio es de #{@subscription.max_amount}"
+      flash[:alert] = "Tu balance en Binance es de #{@subscription.max_amount}"
       render :new
     elsif @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
@@ -62,6 +62,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def check_balances
-
+    @balance = 100
   end
 end

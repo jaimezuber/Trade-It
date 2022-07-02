@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :exchanges, only: %i[new create]
   resources :subscriptions, only: :index
   resources :positions, only: :index
+  resources :trades, only: %i[new create]
   get 'profile', to: 'bios#profile', as: :profile
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
