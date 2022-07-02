@@ -22,11 +22,8 @@ gem 'rest-client', '~> 2.1'
 gem 'pundit'
 gem 'faker'
 gem 'open-uri'
-<<<<<<< HEAD
-=======
 gem 'pg_search', '~> 2.3.0'
 gem "turbolinks_render"
->>>>>>> 5a1f1d30367c0844636d3027e1c7d6956f75a7d3
 gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
