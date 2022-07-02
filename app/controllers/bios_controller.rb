@@ -1,6 +1,6 @@
 class BiosController < ApplicationController
-  skip_before_action :authenticate_user!, :check_bio, only: %i[index show]
-
+  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :check_bio, only: %i[new create]
   def new
     @bio = Bio.new
     authorize @bio
@@ -8,13 +8,13 @@ class BiosController < ApplicationController
 
   def create
     @bio = Bio.new(rev_params)
-    @bio.user = current_user
     authorize @bio
+    @bio.user = current_user
     if @bio.save
       flash[:notice] = 'Account set'
       redirect_to bios_path
     else
-      render
+      render :new
     end
   end
 
@@ -22,6 +22,30 @@ class BiosController < ApplicationController
     if params[:query].present?
       @bios = policy_scope(Bio).search_by_username(params[:query]).reject do |bio|
         bio.user.trades.empty?
+      end
+    elsif params[:riesgo] == 'alto'
+      @bios = policy_scope(Bio).select do |bio|
+        if bio.volatilidad != 0.0
+          if bio.volatilidad > 70
+            bio.user.trades
+          end
+        end
+      end
+    elsif params[:riesgo] == 'medio'
+      @bios = policy_scope(Bio).select do |bio|
+        if bio.volatilidad != 0.0
+          if bio.volatilidad > 40 && bio.volatilidad < 60
+            bio.user.trades
+          end
+        end
+      end
+    elsif params[:riesgo] == 'bajo'
+      @bios = policy_scope(Bio).select do |bio|
+        if bio.volatilidad != 0.0
+          if bio.volatilidad < 20
+            bio.user.trades
+          end
+        end
       end
     else
       @bios = policy_scope(Bio).reject do |bio|
@@ -36,7 +60,7 @@ class BiosController < ApplicationController
 
     require 'json'
     require 'rest-client'
-    url = 'https://api.exchange.ripio.com/api/v1/rate/all/'
+    url = 'https://testnet.binancefuture.com/fapi/v1/premiumIndex'
 
     response = RestClient.get url
     @result = JSON.parse response.to_str

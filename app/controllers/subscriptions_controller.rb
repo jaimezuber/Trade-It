@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[edit update]
+  before_action :check_balances, only: %i[new create]
 
   def index
     @subscriptions_trader = policy_scope(Subscription).select do |subscription|
@@ -26,7 +27,11 @@ class SubscriptionsController < ApplicationController
     @subscription.trader = @trader
 
     authorize @subscription
-    if @subscription.save
+
+    if @balance < @subscription.max_amount
+      flash[:alert] = "Tu balance en Binance es de #{@subscription.max_amount}"
+      render :new
+    elsif @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
       redirect_to bio_path(@trader.bio)
     else
@@ -54,5 +59,9 @@ class SubscriptionsController < ApplicationController
   def set_subscription
     @subscription = Subscription.find(params[:id])
     authorize @subscription
+  end
+
+  def check_balances
+    @balance = 100
   end
 end

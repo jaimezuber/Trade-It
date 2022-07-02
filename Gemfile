@@ -23,6 +23,8 @@ gem 'pundit'
 gem 'faker'
 gem 'open-uri'
 gem 'pg_search', '~> 2.3.0'
+gem 'active_median'
+gem 'average'
 gem "turbolinks_render"
 gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do  gem 'pry-byebug'
