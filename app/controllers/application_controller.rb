@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, :check_bio
+  skip_before_action :check_bio, if: :devise_controller?
   include Pundit
 
   # Pundit: white-list approach.
@@ -20,8 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_bio
-    if user_signed_in?
-      if current_user.bio.nil?
+    if current_user&.bio.nil?
         flash[:notice] = 'Finish setting your profile'
         redirect_to new_bio_path
       end
