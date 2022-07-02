@@ -6,17 +6,26 @@
         <h3 class="tag is-link is-large mb-4 level-left explore"><%= link_to 'Explorá traders', bios_path %></h3>
         <div class="tags are-medium p-3">
           <% if params[:riesgo] == 'bajo'%>
-            <span class="tag is-link color"><%= link_to 'Riesgo Bajo' %><span class="delete is-small"><%= link_to 'Riesgo Bajo' %></span></span>
+            <%= link_to bios_path do %>
+              <span class="tag is-link color">Riesgo Bajo
+              <span class="delete is-small"></span></span>
+            <% end %>
           <% else %>
             <span class="tag is-white"><%= link_to 'Riesgo Bajo', bios_path(params: {riesgo: 'bajo'}) %></span>
           <% end %>
           <% if params[:riesgo] == 'medio' %>
-            <span class="tag is-link color"><%= link_to 'Riesgo Medio' %><span class="delete is-small"><%= link_to 'Riesgo Medio' %></span></span>
+            <%= link_to bios_path do %>
+              <span class="tag is-link color">Riesgo Medio
+                <span class="delete is-small"></span></span>
+            <% end %>
           <% else %>
             <span class="tag is-white"><%= link_to 'Riesgo Medio', bios_path(params: {riesgo: 'medio'}) %></span>
           <% end %>
           <% if params[:riesgo] == 'alto' %>
-            <span class="tag is-link color"><%= link_to 'Riesgo Alto' %><span class="delete is-small"><%= link_to 'Riesgo Alto' %></span></span>
+            <%= link_to bios_path do %>
+              <span class="tag is-link color">Riesgo Alto
+              <span class="delete is-small"></span></span>
+            <% end %>
           <% else %>
             <span class="tag is-white"><%= link_to 'Riesgo Alto', bios_path(params: {riesgo: 'alto'}) %></span>
           <% end %>
