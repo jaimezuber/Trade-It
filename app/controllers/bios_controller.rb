@@ -7,7 +7,7 @@ class BiosController < ApplicationController
   end
 
   def create
-    @bio = Bio.new(rev_params)
+    @bio = Bio.new(bio_params)
     authorize @bio
     @bio.user = current_user
     if @bio.save
@@ -71,9 +71,20 @@ class BiosController < ApplicationController
     authorize @bio
   end
 
+  def update
+    @bio = current_user.bio
+    authorize @bio
+    if @bio.update(bio_params)
+      flash[:notice] = "Profile edited"
+      redirect_to profile_path
+    else
+      render :profile
+    end
+  end
+
   private
 
-  def rev_params
+  def bio_params
     params.require(:bio).permit(:username, :description, :photo)
   end
 end

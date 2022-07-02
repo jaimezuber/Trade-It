@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :bios, only: %i[new create index show]
+  resources :bios, only: %i[new create index show update]
   resources :users do
     resources :subscriptions, only: %i[new create]
   end
