@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_bio
-    if current_user&.bio.nil?
+    if user_signed_in? && current_user.bio.nil?
       flash[:notice] = 'Finish setting your profile'
       redirect_to new_bio_path
     end
