@@ -13,7 +13,7 @@ class ExchangesController < ApplicationController
     authorize @exchange
     if @exchange.save
       flash[:notice] = 'Exchange guardado'
-      if params[:user_id].nil?
+      if params[:user_id].empty?
         redirect_to profile_path
       else
         redirect_to new_user_subscription_path(User.find(params[:user_id]))
