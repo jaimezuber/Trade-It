@@ -17,4 +17,8 @@ class BioPolicy < ApplicationPolicy
   def profile?
     true
   end
+
+  def update?
+    true
+  end
 end
