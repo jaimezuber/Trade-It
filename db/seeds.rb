@@ -121,24 +121,17 @@ end
 
 Bio.all.each do |bio|
   bio.rendimiento = 0.0
-  bio.user.trades.each do |trade|
-    bio.rendimiento += trade.pnl unless trade.pnl.nil?
-  end
-  bio.save!
-end
-
-Bio.all.each do |bio|
   bio.volatilidad = 0.0
   pnl_array = []
   bio.user.trades.each do |trade|
+    bio.rendimiento += trade.pnl unless trade.pnl.nil?
     pnl_array.push(trade.pnl) unless trade.pnl.nil?
     pnl_mean = pnl_array.mean
-    varianza = pnl_array.inject(0) { |varianza, x| varianza += (x - pnl_mean) ** 2 } 
+    varianza = pnl_array.inject(0) { |varianza, x| varianza += (x - pnl_mean) ** 2 }
     desvio = Math.sqrt(varianza/(pnl_array.size-1))
     bio.volatilidad = desvio * Math.sqrt(30)
   end
   bio.save!
 end
-
 
 puts 'All set'
