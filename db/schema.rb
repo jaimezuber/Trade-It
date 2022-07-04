@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 2022_06_29_001548) do
   create_table "bios", force: :cascade do |t|
     t.string "username"
     t.text "description"
-    t.float "rendimiento", default: 0.0
+    t.float "rendimiento"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "volatilidad", default: 0.0
+    t.float "volatilidad"
     t.index ["user_id"], name: "index_bios_on_user_id"
   end
 
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2022_06_29_001548) do
     t.float "open_price"
     t.float "close_price"
     t.string "external_id"
-    t.float "pnl"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subscription_id"], name: "index_positions_on_subscription_id"
@@ -80,7 +79,6 @@ ActiveRecord::Schema.define(version: 2022_06_29_001548) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer "amount_per_trade"
     t.integer "max_amount"
-    t.float "rendimiento", default: 0.0
     t.bigint "trader_id", null: false
     t.bigint "subscriber_id", null: false
     t.datetime "created_at", precision: 6, null: false
