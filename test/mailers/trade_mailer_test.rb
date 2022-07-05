@@ -1,8 +1,8 @@
 require "test_helper"
 
-class PositionMailerTest < ActionMailer::TestCase
+class TradeMailerTest < ActionMailer::TestCase
   test "newTrade" do
-    mail = PositionMailer.newTrade
+    mail = TradeMailer.newTrade
     assert_equal "Newtrade", mail.subject
     assert_equal ["to@example.org"], mail.to
     assert_equal ["from@example.com"], mail.from
