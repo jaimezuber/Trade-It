@@ -1,0 +1,14 @@
+
+<h1><%= @user.subscriber.email %>, tenes un nuevo trade!</h1>
+
+<p>
+  <%= @trade.trader.email %> creó un trade de <%= @trade.symbol %>
+  <br>
+  ----------------
+  <br>
+  Detalles del trade:
+  * Posición: <%= @trade.side %>
+  * Precio de entrada: <%= @trade.entry_price %>
+  * Stop Loss: <%= @trade.stop_loss %>
+  * Target Profit: <%= @trade.take_profit %>
+</p>
