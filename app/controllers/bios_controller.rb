@@ -1,4 +1,5 @@
 class BiosController < ApplicationController
+  before_action :find_bio, only: %i[show edit]
   skip_before_action :authenticate_user!, only: %i[index show]
   skip_before_action :check_bio, only: %i[new create]
   def new
@@ -71,6 +72,8 @@ class BiosController < ApplicationController
     authorize @bio
   end
 
+  def edit; end
+
   def update
     @bio = current_user.bio
     authorize @bio
@@ -86,5 +89,10 @@ class BiosController < ApplicationController
 
   def bio_params
     params.require(:bio).permit(:username, :description, :photo)
+  end
+
+  def find_bio
+    @bio = Bio.find(params[:id])
+    authorize @bio
   end
 end
