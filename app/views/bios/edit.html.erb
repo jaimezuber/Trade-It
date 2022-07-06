@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+  <%= @bio.username %>
+</div>
+<br>
+
+<div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <div class="bio-form">
+          <h1>Edit your profile</h1>
+          <div class="mt-3">
+            <%= simple_form_for @bio do |b| %>
+            <%= b.input :username %>
+            <%= b.input :description %>
+            <%= b.input :photo, as: :file %>
+            <div class="d-flex justify-content-center">
+              <%= b.submit "Edit profile", class: 'btn btn-primary' %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+  <% if @bio.user.exchange.nil? %>
+    <%= link_to "Add Exchange", new_exchange_path %>
+  <% else %>
+    <%= @bio.user.exchange.name %>
+  <% end %>
+</div>
+<% # Agregarle ocultar @bio.user.exchange.read_key %>
+<% # Agregarle ocultar @bio.user.exchange.write_key %>
