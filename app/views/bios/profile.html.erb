@@ -4,7 +4,13 @@
     <h1> Description: <%= @bio.description %>  </h1>
     <h1> Rendimiento: <%= @bio.rendimiento %>  </h1>
     <h1> Volatilidad: <%= @bio.volatilidad %> </h1>
-    <div class="img"><%= cl_image_tag current_user.bio.photo.key %> </div>
+    <div class="img">
+    <% if current_user.bio.photo&.key %>
+      <%= cl_image_tag current_user.bio.photo.key %>
+    <% else %>
+      <%= image_tag "avatar2.0.png"%>
+    <% end %>
+   </div>
 
     <%= link_to "Edit profile", edit_bio_path(@bio)  %>
   </div>
