@@ -56,9 +56,9 @@
                 <% if subscription.trader.bio.rendimiento > 0 %>
                   <span class="font-weight-bold py-3"><strong class="text-success"><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
                 <% elsif subscription.trader.bio.rendimiento < 0%>
-                    <span class="font-weight-bold py-3"><strong class="text-danger"><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
+                  <span class="font-weight-bold py-3"><strong class="text-danger"><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
                 <% else %>
-                    <span class="font-weight-bold py-3"><strong class=""><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
+                  <span class="font-weight-bold py-3"><strong class=""><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
                 <% end %>
               </div>
             </div>
