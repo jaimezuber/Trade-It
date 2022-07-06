@@ -7,7 +7,11 @@
           <div class="card bg-white p-3 mb-4 shadow is-clickable">
             <div class="user-info">
               <div class="d-flex">
-                <%= cl_image_tag subscription.subscriber.bio.photo.key,  height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                <% if subscription.subscriber.bio.photo&.key %>
+                  <%= cl_image_tag subscription.subscriber.bio.photo.key, height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                <% else %>
+                  <%= image_tag "avatar2.0.png", height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                <% end %>
                 <h5 class="pl-4 pt-3"> <strong> <%= subscription.subscriber.bio.username %> </strong></h5>
               </div>
             </div>
@@ -22,7 +26,7 @@
                   <span class="font-weight-bold py-3"><strong class="text-danger"><%= subscription.subscriber.bio.rendimiento%>%</strong> since last month</span>
               <% else %>
                   <span class="font-weight-bold py-3"><strong class=""><%= subscription.subscriber.bio.rendimiento%>%</strong> since last month</span>
-              <% end %> 
+              <% end %>
             </div>
           </div>
         </div>
@@ -36,7 +40,11 @@
             <div class="card bg-white p-3 mb-4 shadow is-clickable">
               <div class="user-info">
                 <div class="d-flex">
-                  <%= cl_image_tag subscription.trader.bio.photo.key, height: 90, width: 130, crop: :fill %>
+                  <% if subscription.trader.bio.photo&.key %>
+                    <%= cl_image_tag subscription.trader.bio.photo.key, height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                  <% else %>
+                    <%= image_tag "avatar2.0.png", height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                  <% end %>
                   <h5 class="pl-4 pt-3"> <strong> <%= subscription.trader.bio.username %> </strong></h5>
                 </div>
               </div>
@@ -51,7 +59,7 @@
                     <span class="font-weight-bold py-3"><strong class="text-danger"><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
                 <% else %>
                     <span class="font-weight-bold py-3"><strong class=""><%= subscription.trader.bio.rendimiento%>%</strong> since last month</span>
-                <% end %> 
+                <% end %>
               </div>
             </div>
           </div>
