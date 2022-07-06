@@ -9,6 +9,6 @@ class TradeMailer < ApplicationMailer
     @user = params[:user]
     @trade = params[:trade]
 
-    mail(to: @user.subscriber.email, subject: 'Tenés un nuevo trade')
+    mail(to: @user.email, subject: 'Tenés un nuevo trade')
   end
 end
