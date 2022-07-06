@@ -18,7 +18,7 @@
             <%= link_to "Portfolio", positions_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-          <% if current_user.bio %>
+          <% if current_user.bio && current_user.bio.photo.key %>
             <%= cl_image_tag current_user.bio.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
           <%= image_tag "avatar2.0.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

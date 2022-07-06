@@ -13,8 +13,8 @@ class TradesController < ApplicationController
     if @trade.save
       flash[:notice] = "Tradeado con exito"
       redirect_to bios_path
-      @trade.trader.subscriptions.each do |subscriber|
-        TradeMailer.with(user: subscriber, trade: @trade).newTrade.deliver_now
+      @trade.trader.subscriptions.each do |subscription|
+        TradeMailer.with(user: subscription.subscriber, trade: @trade).newTrade.deliver_now
       end
     else
       render :new
