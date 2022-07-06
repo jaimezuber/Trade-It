@@ -16,9 +16,6 @@ class TradesController < ApplicationController
       @trade.trader.subscriptions.each do |subscriber|
         TradeMailer.with(user: subscriber, trade: @trade).newTrade.deliver_now
       end
-
-
-
     else
       render :new
     end
