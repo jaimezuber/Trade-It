@@ -26,3 +26,17 @@
 .tag a:hover {
   color: #A8B8CB;
 }
+
+.button-trade-container {
+  position:fixed;
+  bottom:70px;
+  right:100px;
+  cursor:pointer;
+}
+
+.button a {
+  text-decoration: none;
+  color: white;
+}
+
+
