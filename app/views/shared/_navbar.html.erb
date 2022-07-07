@@ -11,13 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
+          <li class="nav-item" style="margin-right: 100px;">
+            <%= link_to "Creá un trade", new_trade_path, class: "nav-link button is-link is-inverted" %>
+          </li>
           <li class="nav-item active">
             <%= link_to "Home", bios_path, class: "nav-link" %>
           </li>
           <li class="nav-item ml-1 mr-4">
             <%= link_to "Portfolio", positions_path, class: "nav-link" %>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown is-clickable">
           <% if current_user.bio && current_user.bio.photo.key %>
             <%= cl_image_tag current_user.bio.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
