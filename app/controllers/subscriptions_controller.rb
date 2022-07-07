@@ -34,6 +34,7 @@ class SubscriptionsController < ApplicationController
     elsif @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
       redirect_to bio_path(@trader.bio)
+      SubscriptionMailMailer.with(subscriber: @subscription.subscriber, trader: @subscription.trader).new_subscription.deliver_now
     else
       render :new
     end

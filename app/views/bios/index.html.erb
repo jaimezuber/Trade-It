@@ -50,7 +50,11 @@
                 <%= link_to bio_path(bio) do %>
                   <div class="user-info">
                     <div class="d-flex">
-                      <%= cl_image_tag bio.photo.key,  height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0'%>
+                      <% if bio.photo&.key %>
+                        <%= cl_image_tag bio.photo.key,  height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0'%>
+                      <% else %>
+                         <%= image_tag "avatar2.0.png",  height: 80, width: 80, crop: :fill, :radius => 100, :class => 'pt-0'%>
+                      <% end %>
                       <h5 class="pl-4 pt-3"> <strong> <%= bio.username %> </strong></h5>
                     </div>
                   </div>
