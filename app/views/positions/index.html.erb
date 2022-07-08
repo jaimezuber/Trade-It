@@ -1,5 +1,18 @@
 <h1>Tu Portfolio</h1>
 <br>
+<% pnl_hash = {} %>
+<% @trades.each do |trade| %>
+  <% if !trade.pnl.nil?  %>
+    <% pnl_hash[trade.created_at] = trade.pnl %>
+  <% end %>
+<% end %>
+
+
+<%= line_chart (pnl_hash) %>
+
+
+
+
 <h2>Posiciones</h2>
 <br>
 <% @positions.each do |position| %>
