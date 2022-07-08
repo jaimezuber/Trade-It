@@ -1,25 +1,27 @@
-<h1>Tu Portfolio</h1>
-<br>
-<% pnl_hash = {} %>
-<% @trades.each do |trade| %>
-  <% if !trade.pnl.nil?  %>
-    <% pnl_hash[trade.created_at] = trade.pnl %>
+<div class="container">
+  <br>
+  <br><span class="is-size-4">Tu Portfolio</span>
+  <br><br>
+  <div class="rounded-lg overflow-hidden shadow p-4 bg-white" >
+    <% pnl_hash = {} %>
+    <% @trades.each do |trade| %>
+      <% if !trade.pnl.nil?  %>
+        <% pnl_hash[trade.created_at] = trade.pnl %>
+      <% end %>
+    <% end %>
+    <%= line_chart (pnl_hash), title: "Rendimiento" %>
+  </div>
+
+
+  <br><br><br>
+  <h2>Posiciones</h2>
+  <br>
+  <% @positions.each do |position| %>
+    <p>Trader</p>
+    <%= position.trade.trader.bio.username %>
+    <p>Moneda</p>
+    <%= position.trade.symbol %>
+    <p>Side</p>
+    <%= position.trade.side %>
   <% end %>
-<% end %>
-
-
-<%= line_chart (pnl_hash) %>
-
-
-
-
-<h2>Posiciones</h2>
-<br>
-<% @positions.each do |position| %>
-  <p>Trader</p>
-  <%= position.trade.trader.bio.username %>
-  <p>Moneda</p>
-  <%= position.trade.symbol %>
-  <p>Side</p>
-  <%= position.trade.side %>
-<% end %>
+</div>
