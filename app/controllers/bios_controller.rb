@@ -59,8 +59,6 @@ class BiosController < ApplicationController
     @bio = Bio.find(params[:id])
     authorize @bio
 
-    require 'json'
-    require 'rest-client'
     url = 'https://testnet.binancefuture.com/fapi/v1/premiumIndex'
 
     response = RestClient.get url
