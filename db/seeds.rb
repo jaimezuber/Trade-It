@@ -9,7 +9,7 @@
 Exchange.destroy_all
 Bio.destroy_all
 Position.destroy_all
-Subscription.destroy_all
+Subscription.destroy_all 
 Trade.destroy_all
 User.destroy_all
 
