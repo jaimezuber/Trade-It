@@ -7,9 +7,10 @@
     <% @trades.each do |trade| %>
       <% if !trade.pnl.nil?  %>
         <% pnl_hash[trade.created_at] = trade.pnl %>
+        <!--<%# pnl_hash[trade.created_at.strftime("%a-%H-%M")] = trade.pnl %>-->
       <% end %>
     <% end %>
-    <%= line_chart (pnl_hash), title: "Rendimiento" %>
+    <%= line_chart (pnl_hash), title: "Rendimiento", colors: ["#495ec6"], dataset: {borderWidth: 5},round: 2%>
   </div>
 
 
