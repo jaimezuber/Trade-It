@@ -53,6 +53,7 @@ class SubscriptionsController < ApplicationController
 
   def unsubscribe
     @subscription.status = false
+    render :index
   end
 
   private
