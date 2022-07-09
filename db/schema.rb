@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_29_001548) do
+ActiveRecord::Schema.define(version: 2022_07_09_182758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 2022_06_29_001548) do
 
   create_table "exchanges", force: :cascade do |t|
     t.string "name"
-    t.string "read_key"
-    t.string "write_key"
+    t.string "public_key"
+    t.string "private_key"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2022_06_29_001548) do
     t.bigint "subscriber_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "status", default: true
     t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
     t.index ["trader_id"], name: "index_subscriptions_on_trader_id"
   end

@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: %i[edit update]
+  before_action :set_subscription, only: %i[edit update unsubscribe]
   before_action :check_balances, only: %i[new create]
 
   def index
@@ -49,6 +49,10 @@ class SubscriptionsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def unsubscribe
+    @subscription.status = false
   end
 
   private
