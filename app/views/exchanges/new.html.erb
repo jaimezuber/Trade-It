@@ -10,10 +10,10 @@
             <%= f.input :name, class:"form-control", label: "Name your exchange account" %>
           </div>
           <div class="form-text">
-            <%= f.input :read_key, required: true %>
+            <%= f.input :public_key, required: true %>
           </div>
           <div class="form-text">
-            <%= f.input :write_key, required: true %>
+            <%= f.input :private_key, required: true %>
           </div>
           <%= hidden_field_tag "user_id", "#{@user_id}" %>
           <div class="form-actions mx-auto d-flex justify-content-center">
