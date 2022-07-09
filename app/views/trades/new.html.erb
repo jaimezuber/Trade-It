@@ -7,10 +7,24 @@
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <div class="form-group">
-          <% tickers = ['BTC', 'ETH', 'BCH', 'ZEC', 'RCN', 'MTB18', 'LTC', 'RPC', 'UBI'] %>
-          <%= f.input :symbol, label: "Ticker", :collection => tickers %>
-          <%= f.input :side, label: 'Position', :collection => ['BUY', 'SELL'] %>
-          <div class="form-text mt-5">
+          <div class="d-flex">
+            <div class= "me-5">
+              <% tickers = ['BTC', 'ETH', 'BCH', 'ZEC', 'RCN', 'MTB18', 'LTC', 'RPC', 'UBI'] %>
+              <div class="form-text">
+                <%= f.label :symbol, "Monedas" %>
+              </div>
+                <%= f.select :symbol, tickers , as: :collection %>
+            </div>
+            <div>
+              <% option = ['BUY', 'SELL'] %>
+              <div class="form-text">
+                <%= f.label :side, "Position" %>
+              </div>
+                <%= f.select :side, option , as: :collection %>
+            </div>
+          </div>
+          <div class="form-text mt-6">
+          </div>
             <%= f.input :entry_price, label: "Entry Price", input_html: { type: 'number' } %>
           </div>
           <div class="form-text">

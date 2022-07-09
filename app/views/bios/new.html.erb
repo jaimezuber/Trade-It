@@ -7,13 +7,13 @@
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <div class="form-group">
+          <%= f.input :photo, input_html: { class: 'd-none'}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo!'  %>
           <div class="form-text">
             <%= f.input :username, label: "Username", required: true %>
           </div>
           <div class="form-text">
             <%= f.input :description, label: "Description", required: true %>
           </div>
-          <%= f.input :photo, input_html: { class: 'd-none'}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo!'  %>
           <div class="form-actions mx-auto d-flex justify-content-center pt-4">
             <%= f.submit "Create Profile", class: "button is-link is-light" %>
           </div>
