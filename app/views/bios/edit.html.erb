@@ -1,6 +1,5 @@
 <div class="container">
   <div class="text-center pt-5">
-    <%= @bio.username %>
   </div>
   <br>
 
@@ -16,25 +15,25 @@
               <div class="d-flex justify-content-center">
                <%= cl_image_tag current_user.bio.photo.key, class: "avatar-xlarge" %>
               </div>
-              <%= b.input :photo, as: :file %>
+              <%= b.input :photo, input_html: { class: 'd-none is-clickable' }, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
               <div class="d-flex justify-content-center">
-                <%= b.submit "Edit profile", class: 'btn btn-primary' %>
+                <%= b.submit "Edit profile", class: 'button is-link' %>
               </div>
               <% end %>
             </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <% if @bio.user.exchange.nil? %>
+              <%= link_to "Add Exchange", new_exchange_path %>
+            <% else %>
+              <%= @bio.user.exchange.name %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
   <br>
-  <div class="d-flex justify-content-center">
-    <% if @bio.user.exchange.nil? %>
-      <%= link_to "Add Exchange", new_exchange_path %>
-    <% else %>
-      <%= @bio.user.exchange.name %>
-    <% end %>
-  </div>
 </div>
 
 <% # Agregarle ocultar @bio.user.exchange.read_key %>
