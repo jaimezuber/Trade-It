@@ -61,7 +61,7 @@
                 <div class="d-flex justify-content-between">
                   <div class="d-flex">
                     <h6 class="py-3 mt-1"><strong>Trades:</strong></h6>
-                    <h5 class="py-3 mt-1 ml-2">250</h5>
+                    <h5 class="py-3 mt-1 ml-2"><%= bio.user.trades.count %></h5>
                   </div>
                   <% if bio.rendimiento > 0 %>
                     <span class="font-weight-bold py-3"><strong class="text-success"><%= bio.rendimiento%>%</strong> since last month</span>
