@@ -7,7 +7,7 @@
         <div class="tags are-medium p-3">
           <% if params[:riesgo] == 'bajo'%>
             <%= link_to bios_path do %>
-              <span class="tag is-link color">Riesgo Bajo
+              <span class="tag is-link color mr-3">Riesgo Bajo
               <span class="delete is-small"></span></span>
             <% end %>
           <% else %>
@@ -15,7 +15,7 @@
           <% end %>
           <% if params[:riesgo] == 'medio' %>
             <%= link_to bios_path do %>
-              <span class="tag is-link color">Riesgo Medio
+              <span class="tag is-link color mr-3">Riesgo Medio
                 <span class="delete is-small"></span></span>
             <% end %>
           <% else %>
