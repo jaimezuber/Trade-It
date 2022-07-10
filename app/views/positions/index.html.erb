@@ -10,19 +10,29 @@
         <!--<%# pnl_hash[trade.created_at.strftime("%a-%H-%M")] = trade.pnl %>-->
       <% end %>
     <% end %>
-    <%= line_chart (pnl_hash), title: "Rendimiento", colors: ["#495ec6"], dataset: {borderWidth: 5},round: 2%>
-  </div>
+
+  <% position_hash = {} %>
+    <% @positions.each do |position| %>
+    <% if !position.pnl.nil?  %>
+      <% position_hash[position.created_at] = position.pnl %>
 
 
-  <br><br><br>
-  <h2>Posiciones</h2>
-  <br>
-  <% @positions.each do |position| %>
-    <p>Trader</p>
-    <%= position.trade.trader.bio.username %>
-    <p>Moneda</p>
-    <%= position.trade.symbol %>
-    <p>Side</p>
-    <%= position.trade.side %>
+      <%= position.trade.trader.bio.username %>
+      <p>Moneda</p>
+      <%= position.trade.symbol %>
+      <p>Side</p>
+      <%= position.trade.side %>
+   <% end %>   
   <% end %>
+
+    <%= line_chart [{name: 'trades', data: pnl_hash}, {name: 'positions', data: position_hash}], title: "Rendimiento", colors: ["#495ec6", ], dataset: {borderWidth: 5},round: 2%>
+  </div>
 </div>
+
+<!--
+      <%# position.trade.trader.bio.username %>
+      <p>Moneda</p>
+      <%# position.trade.symbol %>
+      <p>Side</p>
+      <%# position.trade.side %>
+      -->
