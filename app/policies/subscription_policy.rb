@@ -8,7 +8,7 @@ class SubscriptionPolicy < ApplicationPolicy
 
   def create?
     array = record.trader.subscriptions.select { |subscription| subscription.subscriber == user }
-    array.empty?
+    array.empty? && user.exchange
   end
 
   def update?
