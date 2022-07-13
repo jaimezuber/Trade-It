@@ -1,8 +1,7 @@
-<div class="container">
+<div class="container flex justify-center pt-6">
   <br>
-  <br><span class="is-size-4">Tu Portfolio</span>
   <br><br>
-  <div class="rounded-lg overflow-hidden shadow p-4 bg-white" >
+  <div class="rounded-lg overflow-hidden shadow p-4 bg-white" style="width: 75%;">
     <% pnl_hash = {} %>
     <% @trades.each do |trade| %>
       <% if !trade.pnl.nil?  %>
@@ -15,24 +14,48 @@
     <% @positions.each do |position| %>
     <% if !position.pnl.nil?  %>
       <% position_hash[position.created_at] = position.pnl %>
-
-
-      <%= position.trade.trader.bio.username %>
-      <p>Moneda</p>
-      <%= position.trade.symbol %>
-      <p>Side</p>
-      <%= position.trade.side %>
    <% end %>   
   <% end %>
 
-    <%= line_chart [{name: 'trades', data: pnl_hash}, {name: 'positions', data: position_hash}], title: "Rendimiento", colors: ["#495ec6", ], dataset: {borderWidth: 5},round: 2%>
+    <%= line_chart [{name: 'Trades', data: pnl_hash}, {name: 'Posiciones', data: position_hash}], title: "Rendimiento Portoflio", colors: ["#495ec6", "#EEF1FA"], dataset: {borderWidth: 5},round: 2%>
   </div>
 </div>
-
-<!--
-      <%# position.trade.trader.bio.username %>
-      <p>Moneda</p>
-      <%# position.trade.symbol %>
-      <p>Side</p>
-      <%# position.trade.side %>
-      -->
+<br><br><br>
+<div class="container flex justify-center">
+  <br><br>
+  <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white " style="width: 50%;">
+    <div class="pt-3 pl-4">
+      <span class="is-size-4">Historial trades</span>
+      
+    </div>
+    <table class="w-100 divide-y divide-gray-300">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="pl-6 py-2">Coin</th>
+          <th class="pt-2">Side</th>
+          <th class="pt-2">Entry</th>
+          <th class="pt-2">Exit</th>
+          <th class="pt-2">PnL</th>
+        </tr>
+      </thead>
+      <% @trades.each do |trade| %>
+      <% if !trade.pnl.nil? %>
+        <tbody>
+          <tr>
+            <td class="font-medium text-gray-900 pl-6 py-3"><%= trade.symbol %></td>
+            <% if trade.side == "BUY" %>
+              <td class="tag is-success px-2.9 my-3"><%= trade.side %></td>
+            <% else %>
+              <td class="tag is-danger px-2 my-3"><%= trade.side %></td>
+            <% end %>
+            <td class="py-3"><%= trade.entry_price %></td>
+            <td class="py-3"><%= trade.take_profit %></td>
+            <td class="py-3"><%= trade.pnl %>%</td>
+          </tr>
+        </tbody>
+      <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
+<br><br><br>

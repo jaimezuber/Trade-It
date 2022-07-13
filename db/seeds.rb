@@ -50,6 +50,8 @@ puts 'Subscribing users'
 subsc_maxi = Subscription.create!(trader: luca, subscriber: maxi, amount_per_trade: 100, max_amount: 500)
 subsc_joel = Subscription.create!(trader: luca, subscriber: joel, amount_per_trade: 50, max_amount: 200)
 subsc_jaime = Subscription.create!(trader: luca, subscriber: jaime, amount_per_trade: 150, max_amount: 1000)
+subsc_jaime = Subscription.create!(trader: luca, subscriber: jaime, amount_per_trade: 150, max_amount: 1000)
+
 
 puts 'Adding trades to luca'
 
