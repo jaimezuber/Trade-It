@@ -1,0 +1,19 @@
+.card-subscriptor {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 6px grey;
+  h2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+}
+
+.subscriptor-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px ;
+  padding: 20px;
+}
