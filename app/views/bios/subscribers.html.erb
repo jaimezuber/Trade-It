@@ -43,14 +43,6 @@
           </div>
         </div>
         <div>
-        <% if @subscriptors.empty? %>
-        <%= "No subscriptors" %>
-        <% else %>
-        <%= link_to "Subscriptors", subscriptors_path %>
-        <%# <div id = "subscriptors-section"> </div> %>
-        <% end %>
-        </div>
-        <div>
         <% if @subscribers.empty? %>
           <%= "No subscribers" %>
           <% else %>
@@ -58,3 +50,20 @@
         <% end %>
         </div>
       </div>
+
+<div class="subscriptor-container">
+  <% @subscribers.each do |subscriber| %>
+    <div class="card-subscriptor">
+      <h2><%= subscriber.subscriber.bio.username %></h2>
+      <p><%= subscriber.subscriber.bio.description %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="px-4 pb-3">
+  <% if @subscriptors.empty? %>
+  <%= "No subscriptors" %>
+  <% else %>
+  <%= link_to "Subscriptors", profile_path(@bio) %>
+  <% end %>
+</div>

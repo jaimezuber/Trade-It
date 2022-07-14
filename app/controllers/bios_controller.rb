@@ -68,6 +68,8 @@ class BiosController < ApplicationController
   def profile
     @bio = current_user.bio
     authorize @bio
+    @subscriptors = Subscription.where(trader: current_user)
+    @subscribers = Subscription.where(subscriber: current_user)
   end
 
   def edit; end
@@ -81,6 +83,14 @@ class BiosController < ApplicationController
     else
       render :profile
     end
+  end
+
+  def subscriptors
+    profile
+  end
+
+  def subscribers
+    profile
   end
 
   private
