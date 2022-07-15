@@ -23,9 +23,23 @@
 <br><br>
   <div class="container flex justify-center">
     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg p-4 flex justify-center" style="width: 75%;background-color: #D0D6F1;">
-      <span class="tag is-medium is-success is-rounded mt-1">Ganadas: 3</span>
-      <span class="tag is-large is-link is-rounded">Rendimiento: 6%</span>
-      <span class="tag is-medium is-danger is-rounded mt-1">Perdidas: 1</span>
+      <% won_trades = [] %>
+      <% lost_trades = [] %>
+      <% pnl_total = [] %>
+      <% @trades.each do |trade| %>
+        <% if !trade.pnl.nil? %>
+          <% if trade.pnl > 0  %>
+            <% won_trades.push(trade.pnl) %>
+          <% elsif trade.pnl < 0 %>
+            <% lost_trades.push(trade.pnl)  %>
+          <% end %>
+          <% pnl_total.push(trade.pnl) %>
+        <% end %>
+      <% end %>
+      <% pnl_total = pnl_total.inject(&:+) %>
+      <span class="tag is-medium is-success is-rounded mt-1">Ganadas: <%= won_trades.count %></span>
+      <span class="tag is-large is-link is-rounded">Rendimiento: <%= pnl_total %>%</span>
+      <span class="tag is-medium is-danger is-rounded mt-1">Perdidas: <%= lost_trades.count %></span>
     </div>
   </div>
 <div class="container flex justify-center">
@@ -33,21 +47,6 @@
   <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white" style="width: 75%;">
     <div class="pt-3 pl-4 level">
       <span class="is-size-4">Historial trades</span>
-       <div class="pr-6 level-right">
-        <% won_trades = [] %>
-        <% lost_trades = [] %>
-        <% @trades.each do |trade| %>
-          <% if !trade.pnl.nil? %>
-            <% if trade.pnl > 0  %>
-              <% won_trades.push(trade.pnl) %>
-            <% elsif trade.pnl < 0 %>
-              <% lost_trades.push(trade.pnl)  %>
-            <% end %>
-          <% end %>
-        <% end %>
-        <span class="flex"> <span class="image is-24x24"><%= image_tag 'like.png' %></span> <%= won_trades.count %></span>
-        <span class="flex"><span class="image is-32x32"><%= image_tag 'thumbs-down.png' %></span><%= lost_trades.count %></span>
-      </div>
     </div>
     <table class="w-100 divide-y divide-gray-300">
       <thead class="bg-gray-50">
