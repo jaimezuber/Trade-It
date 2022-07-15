@@ -20,10 +20,17 @@
     <%= line_chart [{name: 'Trades', data: pnl_hash}, {name: 'Posiciones', data: position_hash}], title: "Rendimiento Portoflio", colors: ["#495ec6", "#EEF1FA"], dataset: {borderWidth: 5},round: 2%>
   </div>
 </div>
-<br><br><br>
+<br><br>
+  <div class="container flex justify-center">
+    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg p-4 flex justify-center" style="width: 75%;background-color: #D0D6F1;">
+      <span class="tag is-medium is-success is-rounded mt-1">Ganadas: 3</span>
+      <span class="tag is-large is-link is-rounded">Rendimiento: 6%</span>
+      <span class="tag is-medium is-danger is-rounded mt-1">Perdidas: 1</span>
+    </div>
+  </div>
 <div class="container flex justify-center">
   <br><br>
-  <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white " style="width: 75%;">
+  <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white" style="width: 75%;">
     <div class="pt-3 pl-4 level">
       <span class="is-size-4">Historial trades</span>
        <div class="pr-6 level-right">
