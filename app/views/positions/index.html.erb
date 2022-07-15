@@ -20,13 +20,33 @@
     <%= line_chart [{name: 'Trades', data: pnl_hash}, {name: 'Posiciones', data: position_hash}], title: "Rendimiento Portoflio", colors: ["#495ec6", "#EEF1FA"], dataset: {borderWidth: 5},round: 2%>
   </div>
 </div>
-<br><br><br>
+<br><br>
+  <div class="container flex justify-center">
+    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg p-4 flex justify-center" style="width: 75%;background-color: #D0D6F1;">
+      <% won_trades = [] %>
+      <% lost_trades = [] %>
+      <% pnl_total = [] %>
+      <% @trades.each do |trade| %>
+        <% if !trade.pnl.nil? %>
+          <% if trade.pnl > 0  %>
+            <% won_trades.push(trade.pnl) %>
+          <% elsif trade.pnl < 0 %>
+            <% lost_trades.push(trade.pnl)  %>
+          <% end %>
+          <% pnl_total.push(trade.pnl) %>
+        <% end %>
+      <% end %>
+      <% pnl_total = pnl_total.inject(&:+) %>
+      <span class="tag is-medium is-success is-rounded mt-1">Ganadas: <%= won_trades.count %></span>
+      <span class="tag is-large is-link is-rounded">Rendimiento: <%= pnl_total %>%</span>
+      <span class="tag is-medium is-danger is-rounded mt-1">Perdidas: <%= lost_trades.count %></span>
+    </div>
+  </div>
 <div class="container flex justify-center">
   <br><br>
-  <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white " style="width: 75%;">
-    <div class="pt-3 pl-4">
+  <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg bg-white" style="width: 75%;">
+    <div class="pt-3 pl-4 level">
       <span class="is-size-4">Historial trades</span>
-      
     </div>
     <table class="w-100 divide-y divide-gray-300">
       <thead class="bg-gray-50">
@@ -38,23 +58,23 @@
           <th class="pt-2">PnL</th>
         </tr>
       </thead>
-      <% @trades.each do |trade| %>
-      <% if !trade.pnl.nil? %>
-        <tbody>
-          <tr>
-            <td class="font-medium text-gray-900 pl-6 py-3"><%= trade.symbol %></td>
-            <% if trade.side == "BUY" %>
-              <td class="tag is-success px-2.9 my-3"><%= trade.side %></td>
-            <% else %>
-              <td class="tag is-danger px-2 my-3"><%= trade.side %></td>
-            <% end %>
-            <td class="py-3"><%= trade.entry_price %></td>
-            <td class="py-3"><%= trade.take_profit %></td>
-            <td class="py-3"><%= trade.pnl %>%</td>
-          </tr>
-        </tbody>
+      <tbody>
+        <tr>
+          <% @trades.each do |trade| %>
+          <% if !trade.pnl.nil? %>
+          <td class="font-medium text-gray-900 pl-6 py-3"><%= trade.symbol %></td>
+          <% if trade.side == "BUY" %>
+            <td class="tag is-success px-2.9 my-3"><%= trade.side %></td>
+          <% else %>
+            <td class="tag is-danger px-2 my-3"><%= trade.side %></td>
+          <% end %>
+          <td class="py-3"><%= trade.entry_price %></td>
+          <td class="py-3"><%= trade.take_profit %></td>
+          <td class="py-3"><%= trade.pnl %>%</td>
+        </tr>
+      </tbody>
       <% end %>
-      <% end %>
+    <% end %>
     </table>
   </div>
 </div>
