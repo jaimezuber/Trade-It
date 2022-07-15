@@ -27,6 +27,9 @@ gem 'active_median'
 gem 'average'
 gem "turbolinks_render"
 gem 'letter_opener', group: :development
+gem "chartkick"
+gem "groupdate"
+
 
 gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do  gem 'pry-byebug'
