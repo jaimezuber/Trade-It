@@ -1,3 +1,25 @@
+<div style="background-color: #EEF1FA;">
+  <br><br><br>
+     <div class="mt-4">
+       <div class="row d-flex justify-content-center">
+         <div class="col-5 bg-white p-5 rounded-lg">
+           <div class="bio-form">
+             <span class= "is-size-3 d-flex">Tu Portfolio</span>
+            <div class="pt-3">
+        <h2>Posiciones</h2>
+       </div>
+      </div>
+         <% @positions.each do |position| %>
+        <p>Trader</p>
+        <%= position.trade.trader.bio.username %>
+        <p>Moneda</p>
+        <%= position.trade.symbol %>
+        <p>Side</p>
+        <%= position.trade.side %>
+      <% end %>
+      </div>
+  </div>
+</div>
 <div class="container flex justify-center pt-6">
   <br>
   <br><br>
