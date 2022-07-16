@@ -39,7 +39,7 @@
           <div class="title is-4 header text-center">
             <span class="tag is-link is-light is-large"> Riesgo Bajo </span>
           </div>
-          <%= image_tag "low-risk.png", alt: "Low-risk", width: 350 %>
+          <%= image_tag "low-vol.png", alt: "Low-risk", width: 350 %>
         </div>
       <% end %>
       <%= link_to bios_path(params: {riesgo: 'medio'}) do %>
@@ -47,7 +47,7 @@
           <div class="title is-4 header text-center">
             <span class="tag is-link is-light is-large"> Riesgo Medio </span>
           </div>
-          <%= image_tag "medium-risk.png", alt: "Med-risk", width: 350 %>
+          <%= image_tag "mid-vol.png", alt: "Med-risk", width: 350 %>
         </div>
       <% end %>
       <%= link_to bios_path(params: {riesgo: 'alto'}) do %>
@@ -55,7 +55,7 @@
           <div class="title is-4 header text-center">
             <span class="tag is-link is-light is-large"> Riesgo Alto </span>
           </div>
-          <%= image_tag "high-risk.png", alt: "High-risk", width: 350 %>
+          <%= image_tag "high-vol.png", alt: "High-risk", width: 350 %>
         </div>
       <% end %>
     </div>
