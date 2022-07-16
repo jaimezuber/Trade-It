@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
+        <div class="border-t border-gray-900 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
           <div class="px-6 py-5 text-sm font-medium text-center">
             <span class="text-gray-900"><strong>Rendimiento:</strong></span>
             <span class="text-gray-600"><%= @bio.rendimiento %>%</span>
@@ -50,110 +50,104 @@
           </div>
         </div>
       </div>
-
-
       <div>
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto " style="width: 65%;">
-        <ul role="list" class="divide-y divide-gray-200">
-      <div class=" px-4 py-5 border-b border-gray-200 sm:px-6">
-        <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-          <div class="ml-4 mt-2 ">
-            <h3 class="tag is-link is-large">Trades Historial</h3>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-
-          <% @bio.user.trades.each do |trade|%>
-          <li class="p-5 border-t bg-white" style="list-style: none;">
-            <div class="top-card">
-              <div class="flex space-x-3">
-                  <% if @bio.photo&.key %>
-                    <%= cl_image_tag(@bio.photo.key,  height: 64, width: 64, crop: :fill, :radius => 100) %>
-                  <% else %>
-                    <%= image_tag("avatar2.0.png",  height: 64, width: 64, crop: :fill, :radius => 100) %>
-                  <% end %>
-                  <div class="flex-1 space-y-1 level">
-                    <p class="level-left pl-5 is-size-5"><%= @bio.username %></p>
-                    <div class="tags has-addons">
-                      <% if trade.side == "BUY" %>
-                        <p class="tag is-medium space-x-reverse">LONG</p>
-                        <% if trade.exit_price.nil? %>
-                          <p class="tag is-light is-medium space-x-reverse">OPEN</p>
-                        <% else %>
-                          <% if trade.exit_price >= trade.entry_price %>
-                           <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
-                          <% else %>
-                            <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
-                          <% end %>
-                        <% end %>
-                      <% else %>
-                        <p class="tag is-medium space-x-reverse">SHORT</p>
-                        <% if trade.exit_price.nil? %>
-                          <p class="tag is-light is-medium space-x-reverse">OPEN</p>
-                        <% else %>
-                          <% if trade.exit_price <= trade.entry_price %>
-                            <p class="tag is-success is-medium space-x-reverse">PROFIT</p>
-                          <% else %>
-                            <p class="tag is-danger is-medium space-x-reverse">LOSS</p>
-                          <% end %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-              </div>
-
-                <div class="level">
-                  <div class="pl-6 py-1 text-sm font-medium text-center level-item">
-                    <span class="tag is-light is-link is-medium">Coin:</span>
-                    <span class="text-gray-600 pl-2"><%= trade.symbol %></span>
-                  </div>
-                  <div class="pl-6 py-1 text-sm font-medium text-center level-item">
-                    <span class="tag is-light is-link is-medium">Entry:</span>
-                    <span class="text-gray-600 pl-2"><%= trade.entry_price %></span>
-                  </div>
-
-                  <div class="pl-6 py-1 text-sm font-medium text-center level-item">
-
-                      <% if trade.exit_price.nil? %>
-                        <% @result.each do |ticker| %>
-                          <% if ticker['symbol'] == trade.symbol.upcase.concat("USDT") %>
-                          <span class="tag is-light is-link is-medium">Market:</span>
-                           <span class="text-gray-600 pl-2"> <%= ticker['markPrice'].to_f.round(2) %></span>
-                          <% end %>
-                        <% end %>
-                      <% else %>
-                      <span class="tag is-light is-link is-medium">Exit:</span>
-                        <span class="text-gray-600 pl-2"><%= trade.exit_price %></span>
-                      <% end %>
-                  </div>
-                  <div class="px-6 py-1 text-sm font-medium text-center level-item">
-                    <p class="text-gray-600 pl-2">
-                      <% if trade.exit_price.nil? %>
-                        <% @result.each do |ticker| %>
-                          <% if ticker['symbol'] == trade.symbol.upcase.concat("USDT") %>
-
-                          <span class="tag is-light is-link is-medium">Rolling PnL:</span>
-                            <%= (((ticker['markPrice'].to_f / trade.entry_price) -1)*100).round(2) %>%
-                          <% end %>
-                        <% end %>
-                        <% else %>
-                          <span class="tag is-light is-link is-medium">PnL:</span>
-                          <%= trade.pnl %>%
-                      <% end %>
-                    </span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto " style="width: 60%;">
+            <ul role="list" class="divide-y divide-gray-200">
+              <div class=" px-4 py-5 border-b border-gray-200 sm:px-6">
+                <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+                  <div class="ml-4 mt-2 ">
+                    <h3 class="tag is-link is-large">Trades Historial</h3>
                   </div>
                 </div>
               </div>
-              <%end%>
-            </div>
-          </li>
+              <div class="row">
+                <% @bio.user.trades.each do |trade|%>
+                  <li class="p-5 border-t bg-white" style="list-style: none;">
+                    <div class="level">
+                      <div class="level-left mb-4">
+                        <% if @bio.photo&.key %>
+                          <%= cl_image_tag(@bio.photo.key,  height: 42, width: 42, crop: :fill, :radius => 100) %>
+                        <% else %>
+                          <%= image_tag("avatar2.0.png",  height: 42, width: 42, crop: :fill, :radius => 100) %>
+                        <% end %>
+                        <p class="pl-5 is-size-5 level-left has-text-weight-semibold"><%= @bio.username %></p>
+                      </div>
+                      <div class="tags has-addons level-right">
+                        <% if trade.side == "BUY" %>
+                          <p class="tag is-medium space-x-reverse is-rounded">LONG</p>
+                          <% if trade.exit_price.nil? %>
+                            <p class="tag is-light is-medium space-x-reverse is-rounded">OPEN</p>
+                          <% else %>
+                            <% if trade.exit_price >= trade.entry_price %>
+                             <p class="tag is-success is-medium space-x-reverse is-rounded">PROFIT</p>
+                            <% else %>
+                              <p class="tag is-danger is-medium space-x-reverse is-rounded">LOSS</p>
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <p class="tag is-medium space-x-reverse is-rounded">SHORT</p>
+                          <% if trade.exit_price.nil? %>
+                            <p class="tag is-light is-medium space-x-reverse is-rounded">OPEN</p>
+                          <% else %>
+                            <% if trade.exit_price <= trade.entry_price %>
+                              <p class="tag is-success is-medium space-x-reverse is-rounded">PROFIT</p>
+                            <% else %>
+                              <p class="tag is-danger is-medium space-x-reverse is-rounded">LOSS</p>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="hero is-small is-light" style="background-color: #EFF2FB;">
+                      <div class="level">
+                        <div class="pl-1 py-2 text-sm font-medium text-center level-item">
+                          <span class="tag is-light is-link is-medium">Coin:</span>
+                          <span class="text-gray-600 pl-2"><%= trade.symbol %></span>
+                        </div>
+                        <div class="pl-6 py-1 text-sm font-medium text-center level-item">
+                          <span class="tag is-light is-link is-medium">Entry:</span>
+                          <span class="text-gray-600 pl-2"><%= trade.entry_price %></span>
+                        </div>
+                        <div class="pl-6 py-1 text-sm font-medium text-center level-item">
+                            <% if trade.exit_price.nil? %>
+                              <% @result.each do |ticker| %>
+                                <% if ticker['symbol'] == trade.symbol.upcase.concat("USDT") %>
+                                  <span class="tag is-light is-link is-medium">Market:</span>
+                                  <span class="text-gray-600 pl-2"> <%= ticker['markPrice'].to_f.round(2) %></span>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                            <span class="tag is-light is-link is-medium">Exit:</span>
+                              <span class="text-gray-600 pl-2"><%= trade.exit_price %></span>
+                            <% end %>
+                        </div>
+                        <div class="px-6 py-1 text-sm font-medium text-center level-item">
+                          <p class="text-gray-600 pl-2">
+                            <% if trade.exit_price.nil? %>
+                              <% @result.each do |ticker| %>
+                                <% if ticker['symbol'] == trade.symbol.upcase.concat("USDT") %>
+
+                                <span class="tag is-light is-link is-medium">Rolling PnL:</span>
+                                  <%= (((ticker['markPrice'].to_f / trade.entry_price) -1)*100).round(2) %>%
+                                <% end %>
+                              <% end %>
+                              <% else %>
+                                <span class="tag is-light is-link is-medium">PnL:</span>
+                                <%= trade.pnl %>%
+                            <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <%end%>
+                  </div>
+              </div>
+            </li>
+          </div>
         </div>
       </div>
-    </div>
     </ul>
-      </div>
+  </div>
     </div>
   </div>
 </div>

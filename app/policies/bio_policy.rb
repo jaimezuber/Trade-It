@@ -21,4 +21,13 @@ class BioPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def subscriptors?
+    true
+  end
+
+  def subscribers?
+    true
+  end
+
 end
