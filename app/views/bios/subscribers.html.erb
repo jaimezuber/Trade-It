@@ -1,69 +1,85 @@
 <div style="background-color: #EEF1FA;">
-  <div class="container" style="background-color: #EEF1FA;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <br><br>
-      <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto" style="width: 75%;">
-        <div class="bg-white p-5 ">
-        <div class="text-end">
-        <%= link_to edit_bio_path(@bio) do %>
-          <span style="color: #485fc7; ;"><i class="fa-solid fa-user-pen fa-1x"></i></span>
-        <% end %>
-        </div>
-          <div class="sm:flex sm:items-center sm:justify-between mb-5">
-            <div class="sm:flex sm:space-x-5">
-              <div class="flex-shrink-0">
-                <% if @bio.photo&.key %>
-                  <%= cl_image_tag(@bio.photo.key,  height: 128, width: 128, crop: :fill, :radius => 100) %>
-                <% else %>
-                  <%= image_tag("avatar2.0.png",  height: 128, width: 128, crop: :fill, :radius => 100) %>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-9">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <br><br>
+          <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto">
+            <div class="bg-white p-5 ">
+              <div class="text-end">
+                <%= link_to edit_bio_path(@bio) do %>
+                  <span style="color: #485fc7; ;"><i class="fa-solid fa-user-pen fa-1x"></i></span>
                 <% end %>
               </div>
-              <div class="mt-4 sm:mt-0 sm:pt-1 sm:text-left">
-                <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= @bio.username %></p>
-                <div class="py-5 text-sm font-medium">
-                  <span class="text-gray-900"><strong>Description:</strong></span>
-                  <span class="text-gray-600"><%= @bio.description %></span>
+              <div class="sm:flex sm:items-center sm:justify-between mb-5">
+                <div class="sm:flex sm:space-x-5">
+                  <div class="flex-shrink-0">
+                    <% if @bio.photo&.key %>
+                      <%= cl_image_tag(@bio.photo.key,  height: 128, width: 128, crop: :fill, :radius => 100) %>
+                    <% else %>
+                      <%= image_tag("avatar2.0.png",  height: 128, width: 128, crop: :fill, :radius => 100) %>
+                    <% end %>
+                  </div>
+                  <div class="mt-4 sm:mt-0 sm:pt-1 sm:text-left">
+                    <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= @bio.username %></p>
+                    <div class="py-5 text-sm font-medium">
+                      <span class="text-gray-900"><strong>Description:</strong></span>
+                      <span class="text-gray-600"><%= @bio.description %></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5 flex justify-center sm:mt-0">
+                  <% @user = @bio.user %>
+                  <% @subscriptions = @user.subscriptions.select { |subscription| subscription.subscriber == current_user }%>
+                </div>
+              </div>
+              <div class="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
+                <div class="px-6 py-5 text-sm font-medium text-center">
+                  <span class="text-gray-900"><strong>Rendimiento:</strong></span>
+                  <span class="text-gray-600"><%= @bio.rendimiento %></span>
+                </div>
+
+                <div class="px-6 py-5 text-sm font-medium text-center">
+                  <span class="text-gray-900"><strong>Volatilidad:</strong></span>
+                  <span class="text-gray-600"><%= @bio.rendimiento %></span>
+                </div>
+
+                <div class="px-6 py-5 text-sm font-medium text-center">
+                  <span class="text-gray-900"><strong>Exchange:</strong></span>
+                  <span class="text-gray-600">*****</span>
                 </div>
               </div>
             </div>
-            <div class="mt-5 flex justify-center sm:mt-0">
-              <% @user = @bio.user %>
-                <% @subscriptions = @user.subscriptions.select { |subscription| subscription.subscriber == current_user }%>
+            <div class="d-flex p-4">
+              <div class="me-3">
+                <% if @subscriptors.empty? %>
+                  <%= "No subscriptors" %>
+                <% else %>
+                  <%= link_to "Subscriptors", subscriptors_path %>
+                  <%# <div id = "subscriptors-section"> </div> %>
+                <% end %>
+              </div>
+              <div>
+                <% if @subscribers.empty? %>
+                  <%= "No subscribers" %>
+                <% else %>
+                  <%= link_to "Subscribers", profile_path(@bio) %>
+                <% end %>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
-          <div class="px-6 py-5 text-sm font-medium text-center">
-            <span class="text-gray-900"><strong>Rendimiento:</strong></span>
-            <span class="text-gray-600"><%= @bio.rendimiento %></span>
+          <div class="subscriptor-container max-w-3xl mx-auto">
+            <% @subscribers.each do |subscriber| %>
+              <div class="card-subscriptor">
+                <h2><%= subscriber.trader.bio.username %></h2>
+                <p><%= subscriber.trader.bio.description %></p>
+              </div>
+            <% end %>
           </div>
-
-          <div class="px-6 py-5 text-sm font-medium text-center">
-            <span class="text-gray-900"><strong>Volatilidad:</strong></span>
-            <span class="text-gray-600"><%= @bio.rendimiento %></span>
-          </div>
-        </div>
-        <div>
-        <% if @subscribers.empty? %>
-          <%= "No subscribers" %>
-          <% else %>
-          <%= link_to "Subscribers", subscribers_path %>
-        <% end %>
         </div>
       </div>
 
-<div class="subscriptor-container">
-  <% @subscribers.each do |subscriber| %>
-    <div class="card-subscriptor">
-      <h2><%= subscriber.subscriber.bio.username %></h2>
-      <p><%= subscriber.subscriber.bio.description %></p>
+      <%= render "activity" %>
     </div>
-  <% end %>
-</div>
-
-<div class="px-4 pb-3">
-  <% if @subscriptors.empty? %>
-  <%= "No subscriptors" %>
-  <% else %>
-  <%= link_to "Subscriptors", profile_path(@bio) %>
-  <% end %>
+  </div>
 </div>
