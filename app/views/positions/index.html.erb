@@ -1,6 +1,5 @@
 <div class="container flex justify-center pt-6">
   <br>
-  <br><br>
   <div class="rounded-lg overflow-hidden shadow p-4 bg-white" style="width: 75%;">
     <% pnl_hash = {} %>
     <% @trades.each do |trade| %>
@@ -22,7 +21,7 @@
 </div>
 <br><br>
   <div class="container flex justify-center">
-    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg p-4 flex justify-center" style="width: 75%;background-color: #D0D6F1;">
+    <div class="rounded-lg p-4 flex justify-center" style="width: 75%;background-color: #D0D6F1;">
       <% won_trades = [] %>
       <% lost_trades = [] %>
       <% pnl_total = [] %>
