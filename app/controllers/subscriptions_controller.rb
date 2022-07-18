@@ -2,16 +2,6 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[edit update unsubscribe]
   before_action :check_balances, only: %i[new create]
 
-  def index
-    @subscriptions_trader = policy_scope(Subscription).select do |subscription|
-      subscription.trader == current_user
-    end
-
-    @subscriptions_subscriber = policy_scope(Subscription).select do |subscription|
-      subscription.subscriber == current_user
-    end
-  end
-
   def new
     @trader = User.find(params[:user_id])
     @subscription = Subscription.new

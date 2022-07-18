@@ -52,6 +52,7 @@ subsc_joel = Subscription.create!(trader: luca, subscriber: joel, amount_per_tra
 subsc_jaime = Subscription.create!(trader: luca, subscriber: jaime, amount_per_trade: 150, max_amount: 1000)
 subsc_luca = Subscription.create!(trader: jaime, subscriber: luca, amount_per_trade: 150, max_amount: 1000)
 
+
 puts 'Adding trades to luca'
 
 trade1 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, take_profit: 22_000, stop_loss: 19_000)

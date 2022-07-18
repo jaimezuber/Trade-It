@@ -1,24 +1,34 @@
-<div class="banner">
-  <div class="container ">
-    <div class="d-flex justify-content-around" >
-      <div class="back">
-        <h1 class= "title is-size-1 pt-6">Sumate a <strong class="has-text-link ">TradeIt.</strong></h1>
-        <br>
-          <div class="tile is-child box  p-4 features">
-            <div class="level-left">
-              <span><%= image_tag "money-bag.png", alt: "Earnings", width: 40 %> </span>
-              <h4 class="ml-3 subtitle has-text-weight-semibold	">Copiá a tus traders favoritos</h4>
+<section id="banner">
+  <div class="full">
+    <div class="banner mt-5">
+      <div class="container mt-5">
+        <div class="d-flex justify-content-around align-items-center" >
+          <div class="back">
+            <h1 class= "title is-size-1 pt-6">Sumate a <strong class="has-text-link ">TradeIt.</strong></h1>
+            <br>
+            <div class="tile is-child box  p-6 features">
+              <div class="level-left">
+                <span><%= image_tag "money-bag.png", alt: "Earnings", width: 40 %> </span>
+                <h4 class="ml-3 subtitle">Copiá a tus traders favoritos</h4>
+              </div>
+              <br><br>
+              <div class="level-left">
+                <span><%= image_tag "clock.png", alt: "Earnings", width: 30 %> </span>
+                <h4 class="ml-3 subtitle">Ahorrá tiempo automatizando tus inversiones </h4>
+              </div>
+              <br><br>
+              <div class="level-left mb-5">
+                <span><%= image_tag "social-media.png", alt: "Earnings", width: 30 %> </span>
+                <h4 class="ml-3 subtitle">Aprendé en comunidad</h4>
+              </div>
+              <div class="btn btn-primary btn-lg mt-5 button is-link w-100">
+                <%=link_to "Registrate", new_user_session_path %>
+              </div>
             </div>
-            <br><br>
-            <div class="level-left">
-            <span><%= image_tag "clock.png", alt: "Earnings", width: 30 %> </span>
-            <h4 class="ml-3 subtitle has-text-weight-semibold	">Ahorrá tiempo automatizando tus inversiones </h4>
-            </div>
-            <br><br>
-            <div class="level-left">
-            <span><%= image_tag "social-media.png", alt: "Earnings", width: 30 %> </span>
-            <h4 class="ml-3 subtitle has-text-weight-semibold	">Aprendé en comunidad</h4>
-            </div>
+          </div>
+          <figure>
+            <%= image_tag "astronaut-new.png", alt: "astronaut-new", class:"d-flex justify-content-end pt-4 mt-5", style:"width:750px;" %>
+          </figure>
         </div>
       </div>
       <figure>
@@ -26,38 +36,69 @@
         </figure>
     </div>
   </div>
-</div>
-
-<section class="hero is-small contenedor px-6" style="background-color: #CED6F3;">
-  <div class="hero-body">
-    <p class="title text-center contitle has-text-link">
-      Elegí tu riesgo y explorá traders
-    </p>
-    <div class="card-columns level">
-      <%= link_to bios_path(params: {riesgo: 'bajo'}) do %>
-        <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
-          <div class="title is-4 header text-center">
-            <span class="tag is-link is-light is-large"> Riesgo Bajo </span>
+</section>
+<section id="riesgo">
+  <div class="contenedor" >
+    <div class="hero-body">
+      <p class="text-center contitle">
+        Elegí tu riesgo y explorá traders
+      </p>
+      <div class="card-columns level ">
+        <%= link_to bios_path(params: {riesgo: 'bajo'}) do %>
+          <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+            <div class="title is-4 header text-center">
+              <span class="tag is-link is-light is-large"> Riesgo Bajo </span>
+            </div>
+            <%= image_tag "low-risk.png", alt: "Low-risk", width: 350 %>
           </div>
-          <%= image_tag "low-risk.png", alt: "Low-risk", width: 350 %>
-        </div>
-      <% end %>
-      <%= link_to bios_path(params: {riesgo: 'medio'}) do %>
-        <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
-          <div class="title is-4 header text-center">
-            <span class="tag is-link is-light is-large"> Riesgo Medio </span>
+        <% end %>
+        <%= link_to bios_path(params: {riesgo: 'medio'}) do %>
+          <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+            <div class="title is-4 header text-center">
+              <span class="tag is-link is-light is-large"> Riesgo Medio </span>
+            </div>
+            <%= image_tag "medium-risk.png", alt: "Med-risk", width: 350 %>
           </div>
-          <%= image_tag "medium-risk.png", alt: "Med-risk", width: 350 %>
-        </div>
-      <% end %>
-      <%= link_to bios_path(params: {riesgo: 'alto'}) do %>
-        <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
-          <div class="title is-4 header text-center">
-            <span class="tag is-link is-light is-large"> Riesgo Alto </span>
+        <% end %>
+        <%= link_to bios_path(params: {riesgo: 'alto'}) do %>
+          <div class="card shadow p-1 is-clickable level-left" style="width:360px; height:250px; border-radius: 3%;">
+            <div class="title is-4 header text-center">
+              <span class="tag is-link is-light is-large"> Riesgo Alto </span>
+            </div>
+            <%= image_tag "high-risk.png", alt: "High-risk", width: 350 %>
           </div>
-          <%= image_tag "high-risk.png", alt: "High-risk", width: 350 %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<section id= "info">
+  <div class="container">
+    <h2 class="text-center h3" style="padding:70px 0px; font-weight:bold;"> Realizamos el copy trade de Criptomonedas más confiable del mercado </h2>
+    <div class="cards-home-container">
+      <div class="home-card">
+        <img src="https://www.cryptomkt.com/static/landing/img/icon-simple.png" alt="">
+        <h2> Simple </h2>
+        <p> Copia a nuestros traders de forma rápida y segura para hacer rendir tus ahorros </p>
+        <a href="#"> Conoce más </a>
+      </div>
+      <div class="home-card">
+        <img src="https://www.cryptomkt.com/static/landing/img/icon-confiable.png" alt="">
+        <h2> Confiable </h2>
+        <p> Cumplimos con las normativas vigentes tanot a nivel nacional como internacional </p>
+        <a href="#"> Conoce más </a>
+      </div>
+      <div class="home-card">
+        <img src="https://www.cryptomkt.com/static/landing/img/icon-secure.png" alt="">
+        <h2> Seguro </h2>
+        <p> Trade It utiliza los regimenes mas altos de seguridad para que estes tranquilo </p>
+        <a href="#"> Conoce más </a>
+      </div>
+    </div>
+    <div class="btn btn-primary btn-lg my-5 button is-link" style="margin-left: 560px;">
+      <div class="d-grid gap-2 col-6 mx-auto my-5" style="width:200px">
+        <%=link_to "Crea tu cuenta", new_user_session_path %>
+      </div>
     </div>
   </div>
 </section>
