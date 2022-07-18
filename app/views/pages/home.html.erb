@@ -21,24 +21,21 @@
                 <span><%= image_tag "social-media.png", alt: "Earnings", width: 30 %> </span>
                 <h4 class="ml-3 subtitle">Aprendé en comunidad</h4>
               </div>
-              <div class="btn btn-primary btn-lg mt-5 button is-link w-100">
-                <%=link_to "Registrate", new_user_session_path %>
+              <div>
+                <%= link_to "Registrate", new_user_registration_path, class:"btn btn-primary btn-lg mt-5 button is-link w-100" %>
               </div>
             </div>
           </div>
           <figure>
-            <%= image_tag "astronaut-new.png", alt: "astronaut-new", class:"d-flex justify-content-end pt-4 mt-5", style:"width:750px;" %>
+            <%= image_tag "Money income-bro.png", alt: "Astronaut", class:"d-flex justify-content-end pt-3", style:"width:550px;" %>
           </figure>
         </div>
       </div>
-      <figure>
-        <%= image_tag "Money income-bro.png", alt: "Astronaut", class:"d-flex justify-content-end pt-3", style:"width:450px;" %>
-        </figure>
     </div>
   </div>
 </section>
 <section id="riesgo">
-  <div class="contenedor" >
+  <div class="contenedor" style="background-color:#495DC5;">
     <div class="hero-body">
       <p class="text-center contitle">
         Elegí tu riesgo y explorá traders
@@ -49,7 +46,7 @@
             <div class="title is-4 header text-center">
               <span class="tag is-link is-light is-large"> Riesgo Bajo </span>
             </div>
-            <%= image_tag "low-risk.png", alt: "Low-risk", width: 350 %>
+            <%= image_tag "low-vol.png", alt: "Low-risk", width: 350 %>
           </div>
         <% end %>
         <%= link_to bios_path(params: {riesgo: 'medio'}) do %>
@@ -57,7 +54,7 @@
             <div class="title is-4 header text-center">
               <span class="tag is-link is-light is-large"> Riesgo Medio </span>
             </div>
-            <%= image_tag "medium-risk.png", alt: "Med-risk", width: 350 %>
+            <%= image_tag "mid-vol.png", alt: "Med-risk", width: 350 %>
           </div>
         <% end %>
         <%= link_to bios_path(params: {riesgo: 'alto'}) do %>
@@ -65,7 +62,7 @@
             <div class="title is-4 header text-center">
               <span class="tag is-link is-light is-large"> Riesgo Alto </span>
             </div>
-            <%= image_tag "high-risk.png", alt: "High-risk", width: 350 %>
+            <%= image_tag "high-vol.png", alt: "High-risk", width: 350 %>
           </div>
         <% end %>
       </div>
@@ -74,30 +71,30 @@
 </section>
 <section id= "info">
   <div class="container">
-    <h2 class="text-center h3" style="padding:70px 0px; font-weight:bold;"> Realizamos el copy trade de Criptomonedas más confiable del mercado </h2>
+    <h2 class="text-center h3" style="padding-top:50px; font-weight:bold;"> Realizamos el copy trade de Criptomonedas más confiable del mercado </h2>
     <div class="cards-home-container">
       <div class="home-card">
         <img src="https://www.cryptomkt.com/static/landing/img/icon-simple.png" alt="">
         <h2> Simple </h2>
-        <p> Copia a nuestros traders de forma rápida y segura para hacer rendir tus ahorros </p>
-        <a href="#"> Conoce más </a>
+        <p> Copiá a traders expertos de forma fácil y hacé rendir tus ahorros </p>
+        <a href="#"> Ver más </a>
       </div>
       <div class="home-card">
         <img src="https://www.cryptomkt.com/static/landing/img/icon-confiable.png" alt="">
         <h2> Confiable </h2>
-        <p> Cumplimos con las normativas vigentes tanot a nivel nacional como internacional </p>
-        <a href="#"> Conoce más </a>
+        <p> Trabajamos con los exchanges más grandes del mercado </p>
+        <a href="#"> Ver más </a>
       </div>
       <div class="home-card">
         <img src="https://www.cryptomkt.com/static/landing/img/icon-secure.png" alt="">
         <h2> Seguro </h2>
-        <p> Trade It utiliza los regimenes mas altos de seguridad para que estes tranquilo </p>
-        <a href="#"> Conoce más </a>
+        <p> Trade It utiliza los regímenes más altos de seguridad para cuidar tus ahorros </p>
+        <a href="#"> Ver más </a>
       </div>
     </div>
-    <div class="btn btn-primary btn-lg my-5 button is-link" style="margin-left: 560px;">
+    <div>
       <div class="d-grid gap-2 col-6 mx-auto my-5" style="width:200px">
-        <%=link_to "Crea tu cuenta", new_user_session_path %>
+        <%=link_to "Creá tu cuenta", new_user_session_path, class:"btn btn-primary btn-lg my-3 button is-link", style:"padding: 25px" %>
       </div>
     </div>
   </div>
