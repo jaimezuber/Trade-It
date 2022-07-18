@@ -1,13 +1,13 @@
 <<div style="background-color: #EEF1FA;">
   <br><br><br>
   <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto p-5 bg-white " style="width: 50%;">
-    <span class="is-size-3 "> New Trade </span>
+    <span class="pl-3 is-size-3 "> New Trade </span>
     <div class="pt-3">
       <%= simple_form_for @trade, remote: true do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <div class="form-group">
-          <div class="d-flex">
+          <div class="d-flex justify-content-center">
             <div class= "me-5">
               <% tickers = ['BTC', 'ETH', 'BCH', 'ZEC', 'RCN', 'MTB18', 'LTC', 'RPC', 'UBI'] %>
               <div class="form-text">
@@ -24,7 +24,6 @@
             </div>
           </div>
           <div class="form-text mt-6">
-          </div>
             <%= f.input :entry_price, label: "Entry Price", input_html: { type: 'number' } %>
           </div>
           <div class="form-text">
@@ -34,7 +33,7 @@
             <%= f.input :stop_loss, label: "Stop Loss", input_html: { type: 'number' } %>
           </div>
           <div class="form-actions mx-auto d-flex justify-content-center pt-4">
-            <%= f.submit "Trade", class: "button is-link is-light" %>
+            <%= f.submit "Trade", class: "button is-link" %>
           </div>
         </div>
       <% end %>
