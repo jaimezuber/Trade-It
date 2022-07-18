@@ -9,7 +9,7 @@
 Exchange.destroy_all
 Bio.destroy_all
 Position.destroy_all
-Subscription.destroy_all 
+Subscription.destroy_all
 Trade.destroy_all
 User.destroy_all
 
@@ -50,6 +50,7 @@ puts 'Subscribing users'
 subsc_maxi = Subscription.create!(trader: luca, subscriber: maxi, amount_per_trade: 100, max_amount: 500)
 subsc_joel = Subscription.create!(trader: luca, subscriber: joel, amount_per_trade: 50, max_amount: 200)
 subsc_jaime = Subscription.create!(trader: luca, subscriber: jaime, amount_per_trade: 150, max_amount: 1000)
+subsc_luca = Subscription.create!(trader: jaime, subscriber: luca, amount_per_trade: 150, max_amount: 1000)
 
 
 puts 'Adding trades to luca'
@@ -58,6 +59,7 @@ trade1 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20
 trade2 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 21_500, take_profit: 22_300, stop_loss: 19_200)
 trade3 = Trade.create!(trader: luca, symbol: 'eth', side: 'sell', entry_price: 1100, take_profit: 950, stop_loss: 1150)
 trade4 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 38, take_profit: 45, stop_loss: 36.5)
+trade5 = Trade.create!(trader: jaime, symbol: 'ltc', side: 'buy', entry_price: 38, take_profit: 45, stop_loss: 36.5)
 
 puts 'Implementing positions'
 
