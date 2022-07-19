@@ -45,23 +45,28 @@
                 </div>
 
                 <div class="px-6 py-5 text-sm font-medium text-center">
-                  <span class="text-gray-900"><strong>Exchange:</strong></span>
-                  <span class="text-gray-600">*****</span>
+                  <% if @subscriptors.empty? %>
+                    <span class="text-gray-900"><strong> Suscripciones: </strong></span>
+                    <span class="text-gray-600"> <%= @subscribers.count %> </span>
+                  <% else %>
+                    <span class="text-gray-900"><strong> Suscriptos: </strong></span>
+                    <span class="text-gray-600"> <%= @subscriptors.count %> </span>
+                  <% end %>
                 </div>
               </div>
             </div>
             <div class="d-flex p-4">
               <div class="me-3">
                 <% if @subscriptors.empty? %>
-                  <%= "No subscriptors" %>
+                  <%= "No tienes subscriptos" %>
                 <% else %>
-                  <%= link_to "Subscriptors", profile_path(@bio) %>
+                  <%= link_to "Suscriptos", profile_path(@bio) %>
                   <%# <div id = "subscriptors-section"> </div> %>
                 <% end %>
               </div>
               <div>
                 <% if @subscribers.empty? %>
-                  <%= "No subscribers" %>
+                  <%= "No tienes suscripciones" %>
                 <% else %>
                   <%= link_to "Subscribers", subscribers_path %>
                 <% end %>
