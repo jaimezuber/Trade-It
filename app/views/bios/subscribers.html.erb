@@ -51,7 +51,7 @@
                   <% else %>
                     <span class="text-gray-900"><strong> Suscriptos: </strong></span>
                     <span class="text-gray-600"> <%= @subscriptors.count %> </span>
-                  <% end %> 
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -75,10 +75,25 @@
           </div>
           <div class="subscriptor-container max-w-3xl mx-auto">
             <% @subscribers.each do |subscriber| %>
-              <div class="card-subscriptor">
-                <h2><%= subscriber.trader.bio.username %></h2>
-                <p><%= subscriber.trader.bio.description %></p>
+            <div class="cards_subscriptors">
+              <div class="card_subscriptor_content">
+                <%= cl_image_tag subscriber.subscriber.bio.photo.key, height: 50, width: 50, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                <div>
+                  <h2><%= subscriber.subscriber.bio.username %></h2>
+                  <p><%= subscriber.subscriber.bio.description %></p>
+                </div>
               </div>
+                <div class="card_subscriptor_footer">
+                <p>Trades:</p>
+                <% if subscriber.trader.bio.rendimiento > 0 %>
+                  <p><strong><%= subscriber.trader.bio.rendimiento%>%</strong> since last month</p>
+                <% elsif subscriber.trader.bio.rendimiento < 0 %>
+                  <p><strong><%= subscriber.trader.bio.rendimiento%>%</strong> since last month</p>
+                <% else %>
+                  <p><strong><%= subscriber.trader.bio.rendimiento%>%</strong> since last month</p>
+                <% end %>
+                </div>
+            </div>
             <% end %>
           </div>
         </div>
