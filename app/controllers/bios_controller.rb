@@ -68,8 +68,8 @@ class BiosController < ApplicationController
   def profile
     @bio = current_user.bio
     authorize @bio
-    @subscriptors = Subscription.where(trader: current_user)
-    @subscribers = Subscription.where(subscriber: current_user)
+    @subscriptors = Subscription.where(trader: current_user, status: true)
+    @subscribers = Subscription.where(subscriber: current_user, status: true)
   end
 
   def edit; end

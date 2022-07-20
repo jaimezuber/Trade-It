@@ -1,6 +1,5 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[edit update unsubscribe]
-  before_action :check_balances, only: %i[new create]
 
   def new
     @trader = User.find(params[:user_id])
@@ -18,10 +17,7 @@ class SubscriptionsController < ApplicationController
 
     authorize @subscription
 
-    if @balance < @subscription.max_amount
-      flash[:alert] = "Tu balance en Binance es de #{@subscription.max_amount}"
-      render :new
-    elsif @subscription.save
+    if @subscription.save
       flash[:notice] = "Ya estas suscripto a #{@trader.bio.username}"
       redirect_to bio_path(@trader.bio)
       SubscriptionMailMailer.with(subscriber: @subscription.subscriber, trader: @subscription.trader).new_subscription.deliver_now
@@ -43,7 +39,12 @@ class SubscriptionsController < ApplicationController
 
   def unsubscribe
     @subscription.status = false
-    render :index
+    if @subscription.save
+      flash[:notice] = 'Ya estas desuscripto'
+    else
+      flash[:notice] = 'Error desuscribiendo'
+    end
+    redirect_to profile_path
   end
 
   private
@@ -55,9 +56,5 @@ class SubscriptionsController < ApplicationController
   def set_subscription
     @subscription = Subscription.find(params[:id])
     authorize @subscription
-  end
-
-  def check_balances
-    @balance = 100
   end
 end

@@ -1,7 +1,7 @@
-<<div style="background-color: #EEF1FA;">
+<div style="background-color: #EEF1FA;">
   <br><br><br>
   <div class="rounded-lg overflow-hidden shadow max-w-3xl mx-auto p-5 bg-white " style="width: 50%;">
-    <span class="pl-3 is-size-3 "> New Trade </span>
+    <span class="pl-3 is-size-3 has-text-link"> Nuevo Trade </span>
     <div class="pt-3">
       <%= simple_form_for @trade, remote: true do |f| %>
         <%= f.error_notification %>
@@ -10,17 +10,17 @@
           <div class="d-flex justify-content-center">
             <div class= "me-5">
               <% tickers = ['BTC', 'ETH', 'BCH', 'ZEC', 'RCN', 'MTB18', 'LTC', 'RPC', 'UBI'] %>
-              <div class="form-text">
-                <%= f.label :symbol, "Monedas" %>
+              <div class="form-text has-text-centered">
+                <%= f.label :symbol, "Moneda"%>
               </div>
-                <%= f.select :symbol, tickers , as: :collection %>
+                <%= f.select :symbol, tickers , as: :collection, input_html:{ class:"rounded-lg" } %>
             </div>
             <div>
               <% option = ['BUY', 'SELL'] %>
-              <div class="form-text">
-                <%= f.label :side, "Position" %>
+              <div class="form-text has-text-centered">
+                <%= f.label :side, "Posición" %>
               </div>
-                <%= f.select :side, option , as: :collection %>
+                <%= f.select :side, option , as: :collection, style:"border-radius: 20px;" %>
             </div>
           </div>
           <div class="form-text mt-6">
@@ -33,7 +33,7 @@
             <%= f.input :stop_loss, label: "Stop Loss", input_html: { type: 'number' } %>
           </div>
           <div class="form-actions mx-auto d-flex justify-content-center pt-4">
-            <%= f.submit "Trade", class: "button is-link" %>
+            <%= f.submit "Crear Trade", class: "button is-link" %>
           </div>
         </div>
       <% end %>

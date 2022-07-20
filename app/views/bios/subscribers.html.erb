@@ -82,6 +82,9 @@
                   <h2><%= subscriber.subscriber.bio.username %></h2>
                   <p><%= subscriber.subscriber.bio.description %></p>
                 </div>
+                <div>
+                  <%= link_to 'Unsubscribe', unsubscribe_path(id: subscriber.id) %>
+                </div>
               </div>
                 <div class="card_subscriptor_footer">
                 <p>Trades:</p>
