@@ -72,7 +72,7 @@
             <% @subscribers.each do |subscriber| %>
               <div class="card-subscriptor">
                 <h2><%= subscriber.trader.bio.username %></h2>
-                <p><%= subscriber.trader.bio.description %></p>
+                <p><%= subscriber.trader.bio.description %><%= link_to 'Unsubscribe', unsubscribe_path(id: subscriber.id) %></p>
               </div>
             <% end %>
           </div>

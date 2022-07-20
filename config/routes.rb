@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get 'profile', to: 'bios#profile', as: :profile
   get 'subscribers', to: 'bios#subscribers', as: :subscribers
   get 'subscriptors', to: 'bios#subscriptors', as: :subscriptors
+  get 'unsubscribe', to: 'subscriptions#unsubscribe', as: :unsubscribe
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -14,4 +14,8 @@ class SubscriptionPolicy < ApplicationPolicy
   def update?
     record.user == user
   end
+
+  def unsubscribe?
+    record.status == true && user.subscriptions_as_subscriber.include?(record)
+  end
 end
