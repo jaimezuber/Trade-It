@@ -49,26 +49,26 @@
                     <span class="text-gray-900"><strong> Suscripciones: </strong></span>
                     <span class="text-gray-600"> <%= @subscribers.count %> </span>
                   <% else %>
-                    <span class="text-gray-900"><strong> Suscriptos: </strong></span>
+                    <span class="text-gray-900"><strong> Suscriptores: </strong></span>
                     <span class="text-gray-600"> <%= @subscriptors.count %> </span>
-                  <% end %>              
+                  <% end %>
                 </div>
               </div>
             </div>
             <div class="d-flex p-4">
               <div class="me-3">
                 <% if @subscriptors.empty? %>
-                  <%= "No tienes suscriptos" %>
+                  <%= "No tienes suscripciones" %>
                 <% else %>
-                  <%= link_to "Suscriptos", subscriptors_path %>
+                  <%= link_to "Suscripciones", subscribers_path %>
                   <%# <div id = "subscriptors-section"> </div> %>
                 <% end %>
               </div>
               <div>
                 <% if @subscribers.empty? %>
-                  <%= "No tienes suscripciones" %>
+                  <%= "No tienes suscriptores" %>
                 <% else %>
-                  <%= link_to "Suscripciones", subscribers_path %>
+                  <%= link_to "Suscriptores", subscriptors_path %>
                 <% end %>
               </div>
             </div>
