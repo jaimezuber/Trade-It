@@ -49,7 +49,7 @@
                     <span class="text-gray-900"><strong> Suscripciones: </strong></span>
                     <span class="text-gray-600"> <%= @subscribers.count %> </span>
                   <% else %>
-                    <span class="text-gray-900"><strong> Suscriptos: </strong></span>
+                    <span class="text-gray-900"><strong> Suscriptores: </strong></span>
                     <span class="text-gray-600"> <%= @subscriptors.count %> </span>
                   <% end %>
                 </div>
@@ -58,9 +58,9 @@
             <div class="d-flex p-4">
               <div class="me-3">
                 <% if @subscriptors.empty? %>
-                  <%= "No tienes suscriptos" %>
+                  <%= "No tienes suscriptores" %>
                 <% else %>
-                  <%= link_to "Suscriptos", subscriptors_path %>
+                  <%= link_to "Suscriptores", subscriptors_path %>
                   <%# <div id = "subscriptors-section"> </div> %>
                 <% end %>
               </div>
@@ -77,10 +77,10 @@
             <% @subscribers.each do |subscriber| %>
             <div class="cards_subscriptors">
               <div class="card_subscriptor_content">
-                <%= cl_image_tag subscriber.subscriber.bio.photo.key, height: 50, width: 50, crop: :fill, :radius => 100, :class => 'pt-0' %>
+                <%= cl_image_tag subscriber.trader.bio.photo.key, height: 50, width: 50, crop: :fill, :radius => 100, :class => 'pt-0' %>
                 <div>
-                  <h2><%= subscriber.subscriber.bio.username %></h2>
-                  <p><%= subscriber.subscriber.bio.description %></p>
+                  <h2><%= subscriber.trader.bio.username %></h2>
+                  <p><%= subscriber.trader.bio.description %></p>
                 </div>
                 <div>
                   <%= link_to 'Unsubscribe', unsubscribe_path(id: subscriber.id) %>

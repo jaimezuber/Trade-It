@@ -49,7 +49,7 @@
                     <span class="text-gray-900"><strong> Suscripciones: </strong></span>
                     <span class="text-gray-600"> <%= @subscribers.count %> </span>
                   <% else %>
-                    <span class="text-gray-900"><strong> Suscriptos: </strong></span>
+                    <span class="text-gray-900"><strong> Suscriptores: </strong></span>
                     <span class="text-gray-600"> <%= @subscriptors.count %> </span>
                   <% end %>
                 </div>
@@ -58,9 +58,9 @@
             <div class="d-flex p-4">
               <div class="me-3">
                 <% if @subscriptors.empty? %>
-                  <%= "No tienes subscriptos" %>
+                  <%= "No tienes subscriptores" %>
                 <% else %>
-                  <%= link_to "Suscriptos", profile_path(@bio) %>
+                  <%= link_to "Suscriptores", profile_path(@bio) %>
                   <%# <div id = "subscriptors-section"> </div> %>
                 <% end %>
               </div>
@@ -85,12 +85,12 @@
               </div>
                 <div class="card_subscriptor_footer">
                 <p>Trades:</p>
-                <% if subscriptor.trader.bio.rendimiento > 0 %>
-                  <p><strong><%= subcriptor.trader.bio.rendimiento%>%</strong> since last month</p>
-                <% elsif subscriptor.trader.bio.rendimiento < 0%>
-                  <p><strong><%= subscriptor.trader.bio.rendimiento%>%</strong> since last month</p>
+                <% if subscriptor.subscriber.bio.rendimiento > 0 %>
+                  <p><strong><%= subcriptor.subscriber.bio.rendimiento%>%</strong> since last month</p>
+                <% elsif subscriptor.subscriber.bio.rendimiento < 0%>
+                  <p><strong><%= subscriptor.subscriber.bio.rendimiento%>%</strong> since last month</p>
                 <% else %>
-                  <p><strong><%= subscriptor.trader.bio.rendimiento%>%</strong> since last month</p>
+                  <p><strong><%= subscriptor.subscriber.bio.rendimiento%>%</strong> since last month</p>
                 <% end %>
                 </div>
             </div>
