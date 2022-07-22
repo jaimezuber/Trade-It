@@ -58,17 +58,17 @@
             <div class="d-flex p-4">
               <div class="me-3">
                 <% if @subscriptors.empty? %>
-                  <%= "No tienes suscripciones" %>
+                  <%= "No tienes suscriptores" %>
                 <% else %>
-                  <%= link_to "Suscripciones", subscribers_path %>
+                  <%= link_to "Suscriptores", subscriptors_path %>
                   <%# <div id = "subscriptors-section"> </div> %>
                 <% end %>
               </div>
               <div>
                 <% if @subscribers.empty? %>
-                  <%= "No tienes suscriptores" %>
+                  <%= "No tienes suscripciones" %>
                 <% else %>
-                  <%= link_to "Suscriptores", subscriptors_path %>
+                  <%= link_to "Suscripciones", subscribers_path %>
                 <% end %>
               </div>
             </div>

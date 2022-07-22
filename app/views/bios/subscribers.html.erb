@@ -87,7 +87,7 @@
                 </div>
               </div>
                 <div class="card_subscriptor_footer">
-                <p>Trades:</p>
+                <p>Trades: <%= subscriber.trader.trades.count %></p>
                 <% if subscriber.trader.bio.rendimiento > 0 %>
                   <p><strong><%= subscriber.trader.bio.rendimiento%>%</strong> since last month</p>
                 <% elsif subscriber.trader.bio.rendimiento < 0 %>

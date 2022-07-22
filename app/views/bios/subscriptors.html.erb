@@ -58,7 +58,7 @@
             <div class="d-flex p-4">
               <div class="me-3">
                 <% if @subscriptors.empty? %>
-                  <%= "No tienes subscriptores" %>
+                  <%= "No tienes suscriptores" %>
                 <% else %>
                   <%= link_to "Suscriptores", profile_path(@bio) %>
                   <%# <div id = "subscriptors-section"> </div> %>
@@ -68,7 +68,7 @@
                 <% if @subscribers.empty? %>
                   <%= "No tienes suscripciones" %>
                 <% else %>
-                  <%= link_to "Subscribers", subscribers_path %>
+                  <%= link_to "Suscripciones", subscribers_path %>
                 <% end %>
               </div>
             </div>
@@ -84,9 +84,9 @@
                 </div>
               </div>
                 <div class="card_subscriptor_footer">
-                <p>Trades:</p>
+                <p>Trades: <%= subscriber.trader.trades.count %></p>
                 <% if subscriptor.subscriber.bio.rendimiento > 0 %>
-                  <p><strong><%= subcriptor.subscriber.bio.rendimiento%>%</strong> since last month</p>
+                  <p><strong><%= subscriptor.subscriber.bio.rendimiento%>%</strong> since last month</p>
                 <% elsif subscriptor.subscriber.bio.rendimiento < 0%>
                   <p><strong><%= subscriptor.subscriber.bio.rendimiento%>%</strong> since last month</p>
                 <% else %>
@@ -103,3 +103,5 @@
     </div>
   </div>
 </div>
+
+<%= console %>
