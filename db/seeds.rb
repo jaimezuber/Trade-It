@@ -59,6 +59,10 @@ trade4 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 38
 trade5 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 36, exit_price: 34.5, take_profit: 45, stop_loss: 34.5)
 trade6 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, exit_price: 21_500, take_profit: 22_000, stop_loss: 19_000)
 
+trade7 = Trade.create!(trader: jaime, symbol: 'btc', side: 'buy', entry_price: 20_000, take_profit: 22_000, stop_loss: 19_000)
+trade8 = Trade.create!(trader: jaime, symbol: 'ltc', side: 'buy', entry_price: 30, exit_price: 29, take_profit: 22_300, stop_loss: 19_200)
+trade9 = Trade.create!(trader: jaime, symbol: 'eth', side: 'sell', entry_price: 1100, exit_price: 1050, take_profit: 950, stop_loss: 1150)
+
 puts 'generating random traders'
 
 15.times do
@@ -135,6 +139,19 @@ puts 'position6'
 Position.create!(trade: trade6, subscription: subsc_maxi, open_price: trade6.entry_price, close_price: trade6.exit_price, pnl: trade6.pnl)
 Position.create!(trade: trade6, subscription: subsc_jaime, open_price: trade6.entry_price, close_price: trade6.exit_price, pnl: trade6.pnl)
 Position.create!(trade: trade6, subscription: subsc_joel, open_price: trade6.entry_price, close_price: trade6.exit_price, pnl: trade6.pnl)
+
+trade7.reload
+puts 'position6'
+Position.create!(trade: trade7, subscription: subsc_maxi, open_price: trade7.entry_price, close_price: trade7.exit_price, pnl: trade7.pnl)
+
+trade8.reload
+puts 'position6'
+Position.create!(trade: trade8, subscription: subsc_maxi, open_price: trade8.entry_price, close_price: trade8.exit_price, pnl: trade8.pnl)
+
+trade9.reload
+puts 'position6'
+Position.create!(trade: trade9, subscription: subsc_maxi, open_price: trade9.entry_price, close_price: trade9.exit_price, pnl: trade9.pnl)
+
 
 Bio.all.each do |bio|
   bio.rendimiento = 0.0
