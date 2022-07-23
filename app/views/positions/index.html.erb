@@ -38,7 +38,7 @@
       <% end %>
       <% pnl_total = pnl_total.inject(&:+) %>
       <span class="tag is-medium is-success is-rounded mt-1">Ganadas: <%= won_trades.count %></span>
-      <span class="tag is-large is-link is-rounded">Rendimiento: <%= pnl_total.round(2) %>%</span>
+      <span class="tag is-large is-link is-rounded">Rendimiento: <%= pnl_total&.round(2) %>%</span>
       <span class="tag is-medium is-danger is-rounded mt-1">Perdidas: <%= lost_trades.count %></span>
     </div>
   </div>
