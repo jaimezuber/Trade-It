@@ -14,10 +14,10 @@
     <% @positions.each do |position| %>
     <% if !position.pnl.nil?  %>
       <% position_hash[position.created_at] = position.pnl %>
-   <% end %>   
+   <% end %>
   <% end %>
 
-    <%= line_chart [{name: 'Trades', data: pnl_hash}, {name: 'Posiciones', data: position_hash}], title: "Rendimiento Portoflio", colors: ["#495ec6", "#EEF1FA"], dataset: {borderWidth: 5},round: 2%>
+    <%= line_chart [{name: 'Trades', data: pnl_hash}, {name: 'Posiciones', data: position_hash}], title: "Rendimiento Portoflio", colors: ["#495ec6", "#D0D7F1"], dataset: {borderWidth: 5},round: 2%>
   </div>
 </div>
 <br><br>
@@ -38,7 +38,7 @@
       <% end %>
       <% pnl_total = pnl_total.inject(&:+) %>
       <span class="tag is-medium is-success is-rounded mt-1">Ganadas: <%= won_trades.count %></span>
-      <span class="tag is-large is-link is-rounded">Rendimiento: <%= pnl_total %>%</span>
+      <span class="tag is-large is-link is-rounded">Rendimiento: <%= pnl_total.round(2) %>%</span>
       <span class="tag is-medium is-danger is-rounded mt-1">Perdidas: <%= lost_trades.count %></span>
     </div>
   </div>
