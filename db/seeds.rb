@@ -13,10 +13,7 @@ Subscription.destroy_all
 Trade.destroy_all
 User.destroy_all
 
-foto_joel = URI.open('https://img.blogs.es/anexom/wp-content/uploads/2021/12/perfil-1024x754.jpg')
 foto_jaime = URI.open('https://previews.123rf.com/images/yupiramos/yupiramos1705/yupiramos170514531/77987158-dise%C3%B1o-gr%C3%A1fico-del-ejemplo-del-vector-del-icono-del-perfil-del-hombre-joven.jpg')
-foto_maxi = URI.open('https://academy.doctoralia.com/hs-fs/hubfs/11-doctoralia-movil-foto-borrosa-250x300.jpg?width=250&name=11-doctoralia-movil-foto-borrosa-250x300.jpg')
-foto_luca = URI.open('https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos.jpg')
 
 puts 'Creating users'
 
@@ -33,9 +30,9 @@ bio_maxi = Bio.create!(username: 'Maxi Zatta', description: 'Me llamo maxi y no 
 bio_jaime = Bio.create!(username: 'Jaime Zuber', description: 'Me llamo jaime y no hago trading', user: jaime)
 bio_luca = Bio.create!(username: 'Luca Pagano', description: 'Me llamo luca y hago trading', user: luca)
 
-bio_joel.photo.attach(io: foto_joel, filename: 'bio_joel.jpg', content_type: 'image/jpg')
-bio_luca.photo.attach(io: foto_luca, filename: 'bio_luca.jpg', content_type: 'image/jpg')
-bio_maxi.photo.attach(io: foto_maxi, filename: 'bio_maxi.jpg', content_type: 'image/jpg')
+bio_joel.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: 'bio_joel.jpg', content_type: 'image/jpg')
+bio_luca.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: 'bio_luca.jpg', content_type: 'image/jpg')
+bio_maxi.photo.attach(io: URI.open(Faker::Avatar.image(format: "jpg")), filename: 'bio_maxi.jpg', content_type: 'image/jpg')
 bio_jaime.photo.attach(io: foto_jaime, filename: 'bio_jaime.jpg', content_type: 'image/jpg')
 
 # puts 'Adding exchanges'
@@ -56,28 +53,11 @@ subsc_luca = Subscription.create!(trader: jaime, subscriber: luca, amount_per_tr
 puts 'Adding trades to luca'
 
 trade1 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, take_profit: 22_000, stop_loss: 19_000)
-trade2 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 21_500, take_profit: 22_300, stop_loss: 19_200)
-trade3 = Trade.create!(trader: luca, symbol: 'eth', side: 'sell', entry_price: 1100, take_profit: 950, stop_loss: 1150)
-trade4 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 38, take_profit: 45, stop_loss: 36.5)
-trade5 = Trade.create!(trader: jaime, symbol: 'ltc', side: 'buy', entry_price: 38, take_profit: 45, stop_loss: 36.5)
-
-puts 'Implementing positions'
-
-Position.create!(trade: trade1, subscription: subsc_jaime)
-Position.create!(trade: trade1, subscription: subsc_maxi)
-
-puts 'position2'
-Position.create!(trade: trade2, subscription: subsc_jaime)
-
-puts 'position3'
-Position.create!(trade: trade3, subscription: subsc_jaime)
-Position.create!(trade: trade3, subscription: subsc_maxi)
-Position.create!(trade: trade3, subscription: subsc_joel)
-
-puts 'position4'
-Position.create!(trade: trade4, subscription: subsc_maxi)
-Position.create!(trade: trade4, subscription: subsc_jaime)
-Position.create!(trade: trade4, subscription: subsc_joel)
+trade2 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 21_500, exit_price: 23_000,take_profit: 22_300, stop_loss: 19_200)
+trade3 = Trade.create!(trader: luca, symbol: 'eth', side: 'sell', entry_price: 1100, exit_price: 1250, take_profit: 950, stop_loss: 1150)
+trade4 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 38, exit_price: 40, take_profit: 45, stop_loss: 36.5)
+trade5 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 36, exit_price: 34.5, take_profit: 45, stop_loss: 34.5)
+trade6 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, exit_price: 21_500, take_profit: 22_000, stop_loss: 19_000)
 
 puts 'generating random traders'
 
@@ -121,6 +101,40 @@ Trade.all.each do |trade|
   end
   trade.save!
 end
+
+puts 'Implementing positions'
+
+trade1.reload
+Position.create!(trade: trade1, subscription: subsc_jaime, open_price: trade1.entry_price, close_price: trade1.exit_price, pnl: trade1.pnl )
+Position.create!(trade: trade1, subscription: subsc_maxi, open_price: trade1.entry_price , close_price: trade1.exit_price, pnl: trade1.pnl)
+
+trade2.reload
+puts 'position2'
+Position.create!(trade: trade2, subscription: subsc_jaime, open_price: trade2.entry_price , close_price: trade2.exit_price , pnl: trade2.pnl)
+
+trade3.reload
+puts 'position3'
+Position.create!(trade: trade3, subscription: subsc_jaime, open_price:trade3.entry_price , close_price: trade3.exit_price, pnl: trade3.pnl)
+Position.create!(trade: trade3, subscription: subsc_maxi, open_price:trade3.entry_price , close_price: trade3.exit_price, pnl: trade3.pnl)
+Position.create!(trade: trade3, subscription: subsc_joel, open_price:trade3.entry_price , close_price: trade3.exit_price, pnl: trade3.pnl)
+
+trade4.reload
+puts 'position4'
+Position.create!(trade: trade4, subscription: subsc_maxi, open_price: trade4.entry_price, close_price: trade4.exit_price, pnl: trade4.pnl)
+Position.create!(trade: trade4, subscription: subsc_jaime, open_price: trade4.entry_price, close_price: trade4.exit_price, pnl: trade4.pnl)
+Position.create!(trade: trade4, subscription: subsc_joel, open_price: trade4.entry_price, close_price: trade4.exit_price, pnl: trade4.pnl)
+
+trade5.reload
+puts 'position5'
+Position.create!(trade: trade5, subscription: subsc_maxi, open_price: trade5.entry_price, close_price: trade5.exit_price, pnl: trade5.pnl)
+Position.create!(trade: trade5, subscription: subsc_jaime, open_price: trade5.entry_price, close_price: trade5.exit_price, pnl: trade5.pnl)
+Position.create!(trade: trade5, subscription: subsc_joel, open_price: trade5.entry_price, close_price: trade5.exit_price, pnl: trade5.pnl)
+
+trade6.reload
+puts 'position6'
+Position.create!(trade: trade6, subscription: subsc_maxi, open_price: trade6.entry_price, close_price: trade6.exit_price, pnl: trade6.pnl)
+Position.create!(trade: trade6, subscription: subsc_jaime, open_price: trade6.entry_price, close_price: trade6.exit_price, pnl: trade6.pnl)
+Position.create!(trade: trade6, subscription: subsc_joel, open_price: trade6.entry_price, close_price: trade6.exit_price, pnl: trade6.pnl)
 
 Bio.all.each do |bio|
   bio.rendimiento = 0.0
