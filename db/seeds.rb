@@ -60,8 +60,8 @@ trade5 = Trade.create!(trader: luca, symbol: 'ltc', side: 'buy', entry_price: 36
 trade6 = Trade.create!(trader: luca, symbol: 'btc', side: 'buy', entry_price: 20_000, exit_price: 21_500, take_profit: 22_000, stop_loss: 19_000)
 
 trade7 = Trade.create!(trader: jaime, symbol: 'btc', side: 'buy', entry_price: 20_000, take_profit: 22_000, stop_loss: 19_000)
-trade8 = Trade.create!(trader: jaime, symbol: 'ltc', side: 'buy', entry_price: 30, exit_price: 29, take_profit: 22_300, stop_loss: 19_200)
-trade9 = Trade.create!(trader: jaime, symbol: 'eth', side: 'sell', entry_price: 1100, exit_price: 1050, take_profit: 950, stop_loss: 1050)
+trade8 = Trade.create!(trader: jaime, symbol: 'ltc', side: 'buy', entry_price: 30, exit_price: 29, take_profit: 32, stop_loss: 29)
+trade9 = Trade.create!(trader: jaime, symbol: 'eth', side: 'sell', entry_price: 1100, exit_price: 1050, take_profit: 950, stop_loss: 1150)
 
 puts 'generating random traders'
 
