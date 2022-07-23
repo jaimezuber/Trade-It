@@ -19,8 +19,8 @@ puts 'Creating users'
 
 joel = User.create!(email: 'joel@gmail.com', password: 'joelsito')
 maxi = User.create!(email: 'maxi@gmail.com', password: 'maxito')
-jaime = User.create!(email: 'jaime@gmail.com', password: 'jaimesito')
-luca = User.create!(email: 'luca@gmail.com', password: 'luquita')
+jaime = User.create!(email: 'jaimezuber99@gmail.com', password: 'jaimesito')
+luca = User.create!(email: 'paganoluca101@gmail.com', password: 'luquita')
 
 puts 'Failed creating user' if jaime.id.nil?
 puts 'Adding bios'
